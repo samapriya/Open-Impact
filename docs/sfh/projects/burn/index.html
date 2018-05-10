@@ -1,0 +1,705 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Stanford Big Earth Hackathon 2018">
+      
+      
+        <link rel="canonical" href="https://planet.com/projects/burn/">
+      
+      
+        <meta name="author" content="Samapriya Roy">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.3">
+    
+    
+      
+        <title>Fire detection and Analysis - Stanford Big Earth Hackathon</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.8d40d89b.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#fire-detection-and-analysis" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://planet.com" title="Stanford Big Earth Hackathon" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Stanford Big Earth Hackathon
+              </span>
+              <span class="md-header-nav__topic">
+                Fire detection and Analysis
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/sfh/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Stanford Hack the Planet
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Stanford Big Earth Hackathon
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/sfh/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Stanford Hack the Planet
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../planet-asset/" title="Planet Imagery" class="md-nav__link">
+      Planet Imagery
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Planet & Google Earth Engine" class="md-nav__link">
+      Planet & Google Earth Engine
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rpl/" title="Setting up your Accounts" class="md-nav__link">
+      Setting up your Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../housekeeping/" title="Basic Housekeeping and Setup" class="md-nav__link">
+      Basic Housekeeping and Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../downloading-images/" title="Downloading Images" class="md-nav__link">
+      Downloading Images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getting-images-ee/" title="Getting Images into Google Earth Engine" class="md-nav__link">
+      Getting Images into Google Earth Engine
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Hackathon Ideas
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Hackathon Ideas
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../biomass/" title="Indicators of Natural Disaster" class="md-nav__link">
+      Indicators of Natural Disaster
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Fire detection and Analysis
+      </label>
+    
+    <a href="./" title="Fire detection and Analysis" class="md-nav__link md-nav__link--active">
+      Fire detection and Analysis
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-source" title="Data Source" class="md-nav__link">
+    Data Source
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-methods" title="Suggested Methods" class="md-nav__link">
+    Suggested Methods
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../phrsl/" title="Urban Growth and Movement" class="md-nav__link">
+      Urban Growth and Movement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../shoreline/" title="Shoreline change" class="md-nav__link">
+      Shoreline change
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lulc/" title="Land use and Land Cover Classification" class="md-nav__link">
+      Land use and Land Cover Classification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../clouds/" title="Cloud Detection" class="md-nav__link">
+      Cloud Detection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flood/" title="Flood Analysis" class="md-nav__link">
+      Flood Analysis
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../planet-citations/" title="Planet Citations" class="md-nav__link">
+      Planet Citations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../featured-projects/" title="Featured Projects" class="md-nav__link">
+      Featured Projects
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-source" title="Data Source" class="md-nav__link">
+    Data Source
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-methods" title="Suggested Methods" class="md-nav__link">
+    Suggested Methods
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/sfh/edit/master/docs/projects/burn.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="fire-detection-and-analysis">Fire detection and Analysis<a class="headerlink" href="#fire-detection-and-analysis" title="Permanent link">&para;</a></h1>
+<p>As climate change effects the frequency , intentisty and location of forest disturbances, <a href="http://www.bioone.org/doi/abs/10.1641/0006-3568(2001)051[0723:CCAFD]2.0.CO;2">forest fires and fires in general</a>. These disturbances and forest fires have been studies and records maintained for a long period of time. Infact <a href="https://www.nasa.gov/mission_pages/fires/main/missions/index.html">Fire and Smoke</a> is one of the missions that NASA has and maintains. To be able to study this a Fire Information for Resource Management System (FIRMS)  was creatd which provides a near real time active fire data using Moderate Resolution Imaging Spectroradiometer (MODIS) and the Visible Infrared Imaging Radiometer Suite (VIIRS). This allows the user to ovserve fire events within 3 hours of overpass of the satellite. You can then use higher rsolution imagery to refine and study the same area with higher, spatial, temporal and spectral resolutions. There are more local fires services for fire measurement such as the <a href="http://www.fire.ca.gov/general/firemaps">California Statewide Fire Map</a></p>
+<h4 id="data-source">Data Source<a class="headerlink" href="#data-source" title="Permanent link">&para;</a></h4>
+<p>The Open Calfornia datasets contains areas of most common fires within the last year,  La Tuna fire The fire—one of the largest in Los Angeles history—consumed over 7,000 acres of brush from September 1-7, endangering nearby homes, freeways and schools. This is part of our <a href="https://www.planet.com/products/open-california/">Open California Dataset</a> and is available for download. We have also uploaded this imagery to Google Earth Engine for you to be able to pull this automatially.</p>
+<p>Turns out GEE already processes and ingest FIRMS data for now updated from November 2000- Present and here is their description. You can add the collection by simply adding this line</p>
+<div class="codehilite"><pre><span></span><span class="c1">//Date of Incident 2017-09-02</span>
+<span class="kd">var</span> <span class="nx">latuna_aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;ft:1_xiEkvDLlvkrDCnIQ0dfPh60dasj8VTHZs17UT06&#39;</span><span class="p">)</span> <span class="c1">//AOI boundary for Latuna Fire</span>
+<span class="kd">var</span> <span class="nx">latuna_img</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;projects/sat-io/Planet/latuna_ps&#39;</span><span class="p">)</span> <span class="c1">//Image Collection for La Tuna fire with PlanetScope 4Band analytic imagery</span>
+<span class="kd">var</span> <span class="nx">firms</span><span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;FIRMS&#39;</span><span class="p">)</span> <span class="c1">// Fire Information for Resource Management System</span>
+</pre></div>
+
+<p>Incase you are interested in working with fire at a different location, we have ingested and released some dataset from fire in Argentina. This was released as part of our <a href="https://www.planet.com/disasterdata/datasets/">Disaster Monitoring Program</a> and you can <a href="https://www.planet.com/disaster/wild-fires-argentina-2017-01-06/">find more details here.</a></p>
+<div class="codehilite"><pre><span></span><span class="c1">//Date of Incident 2017-01-06</span>
+<span class="kd">var</span> <span class="nx">argentina_aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;ft:1y-R9oXLukDlhgyMTLATqmdUZc5uSfJy56W0co7EX&#39;</span><span class="p">)</span> <span class="c1">//AOI boundary for Argentina Fire</span>
+<span class="kd">var</span> <span class="nx">argentina_img</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;projects/sat-io/Planet/argentina_ps&#39;</span><span class="p">)</span> <span class="c1">//Image Collection for Argentina fire with PlanetScope 4Band analytic imagery</span>
+<span class="kd">var</span> <span class="nx">firms</span><span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;FIRMS&#39;</span><span class="p">)</span> <span class="c1">// Fire Information for Resource Management System</span>
+</pre></div>
+
+<p><strong>The Earth Engine version of the Fire Information for Resource Management System (FIRMS)
+dataset contains the LANCE fire detection product in rasterized form. The near real-time (NRT)
+active fire locations are processed by LANCE using the standard MODIS MOD14/MYD14 Fire and
+Thermal Anomalies product. Each active fire location represents the centroid of a 1km pixel
+that is flagged by the algorithm as containing one or more fires within the pixel.
+The data are rasterized as follows: for each FIRMS active fire point,
+a 1km bouding box (BB) is defined; pixels in the MODIS sinusoidal projection that intersect
+the FIRMS BB are identified; if multiple FIRMS BBs intersect the same pixel, the one with higher
+confidence is retained; in case of a tie, the brighter one is retained.</strong></p>
+<p><center><img alt="La Tuna Fire" src="https://ibin.co/3yMF3MElWSVa.gif" /></center></p>
+<h4 id="suggested-methods">Suggested Methods<a class="headerlink" href="#suggested-methods" title="Permanent link">&para;</a></h4>
+<p>Find some of the active firest in our area of interest and look at the effect, for example adding the La Tuna fires over our area of interest can be achieved with the following lines of code. To go to this specific fire events within the FIRMS database try this</p>
+<p><div class="codehilite"><pre><span></span><span class="c1">//Add the collection and filter by Date</span>
+<span class="kd">var</span> <span class="nx">firms</span><span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;FIRMS&#39;</span><span class="p">).</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2017-09-02&#39;</span><span class="p">,</span><span class="s1">&#39;2017-09-03&#39;</span><span class="p">)</span>
+
+<span class="c1">//There is only one image in the collection now so let&#39;s add the first/only one</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="nx">firms</span><span class="p">.</span><span class="nx">first</span><span class="p">())))</span>
+
+<span class="c1">//Set a lat long and zoom level for the setup</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span><span class="o">-</span><span class="mf">118.3179</span><span class="p">,</span> <span class="mf">34.218</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="c1">//To make it look slightly better set the background to be Satellite imagery instead of Map</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">)</span>
+</pre></div>
+<center><img alt="latuna" src="https://ibin.co/3yMFaS8NYlbr.jpg" /></center></p>
+<p>Think about developing this further, what would change and how woudl you detect the change after an areas has been burnt. Can we use NDVI from my biomass study to study effects on vegetation or are there image differencing methods that give you better information.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../biomass/" title="Indicators of Natural Disaster" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Indicators of Natural Disaster
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../phrsl/" title="Urban Growth and Movement" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Urban Growth and Movement
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 - 2019 Planet Labs
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://github.com/planetlabs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://medium.com/planet-stories" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/planetlabs" class="md-footer-social__link fa fa-twitter"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.b438e6c5.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","None","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
