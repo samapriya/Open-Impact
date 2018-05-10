@@ -269,6 +269,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../sitemap/" title="Sites & Links" class="md-nav__link">
+      Sites & Links
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../gee/" title="Account Setup" class="md-nav__link">
       Account Setup
     </a>
@@ -533,6 +545,27 @@
   <span class="nx">region</span><span class="o">:</span> <span class="nx">geometry</span><span class="p">,</span>
   <span class="nx">maxPixels</span><span class="o">:</span><span class="mi">10</span><span class="nx">e12</span>
 <span class="p">})</span>
+</pre></div>
+
+<p>Exporting video seems like the obvious thing to do after this. For this a couple of things to keep in mind, you can only export 3 band videos cast to a 8 bit image per frame. You can sort these images before export and that is the ordering of the frames.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Load and format the collection to export.</span>
+<span class="kd">var</span> <span class="nx">frame</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="nx">multiyear</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">select</span><span class="p">([</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">])</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">image</span><span class="p">.</span><span class="nx">visualize</span><span class="p">({</span><span class="nx">bands</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">],</span> <span class="nx">min</span><span class="o">:</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">2200</span><span class="p">})</span>
+    <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="nx">image</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">));</span>
+  <span class="p">});</span>
+
+<span class="c1">// Export video</span>
+<span class="nx">Export</span><span class="p">.</span><span class="nx">video</span><span class="p">.</span><span class="nx">toDrive</span><span class="p">({</span>
+  <span class="nx">collection</span><span class="o">:</span> <span class="nx">frame</span><span class="p">,</span>
+  <span class="nx">folder</span><span class="o">:</span> <span class="s1">&#39;EE-CSDMS-Test&#39;</span><span class="p">,</span>
+  <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;EE-CSDMS-Video&#39;</span><span class="p">,</span>
+  <span class="nx">dimensions</span><span class="o">:</span> <span class="mi">1080</span><span class="p">,</span>
+  <span class="nx">framesPerSecond</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">region</span><span class="o">:</span> <span class="nx">geometry</span>
+<span class="p">});</span>
 </pre></div>
                 
                   
