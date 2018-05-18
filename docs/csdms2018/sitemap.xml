@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>https://planet.com/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,36 +12,20 @@
     
         
     <url>
-     <loc>https://planet.com/projects/sitemap/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/sitemap/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://planet.com/projects/gee/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/gee/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://planet.com/projects/housekeeping/</loc>
-     <lastmod>2018-05-10</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>https://planet.com/projects/images/</loc>
-     <lastmod>2018-05-10</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://planet.com/projects/imagecollection/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/housekeeping/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -50,14 +34,30 @@
     
         
     <url>
-     <loc>https://planet.com/projects/functions/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/images/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://planet.com/projects/reducers/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/imagecollection/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://samapriya.github.io/projects/functions/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://samapriya.github.io/projects/reducers/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -66,14 +66,14 @@
     
         
     <url>
-     <loc>https://planet.com/projects/multiyear/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/multiyear/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://planet.com/projects/export/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/projects/export/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -81,8 +81,8 @@
 
     
     <url>
-     <loc>https://planet.com/citations/</loc>
-     <lastmod>2018-05-10</lastmod>
+     <loc>https://samapriya.github.io/citations/</loc>
+     <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
