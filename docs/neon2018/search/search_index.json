@@ -189,6 +189,16 @@
             "location": "/citations/#citing-tools", 
             "text": "If you use my tool and find it useful, you can cite that too  Samapriya Roy. (2017, December 4). samapriya/Planet-Batch-Slack-Pipeline-CLI: Planet-Batch-Slack-Pipeline-CLI (Version 0.1.4).\nZenodo. http://doi.org/10.5281/zenodo.1079887", 
             "title": "Citing Tools"
+        }, 
+        {
+            "location": "/contact/", 
+            "text": "Contact Us\n\n\n\n\nScience Informatician, CyVerse\nResearch Associate, Bio5 Institute\nUniversity of Arizona\n\nAddress\nKeating Bioresearch Building, 0400D12\n1657 E. Helen St.\nTucson, AZ 85721\n\nTelephone\n(520) 621-4013\n\nEmail\ntswetnam_at_cyverse_dot_org\n\n\n\n\n\n\nPhD Candidate\nIntern Senior Developer Advocate at Planet\nDepartment of Geography\nIndiana University\nBloomington, Indiana\n\nEmail:\nsamapriya.roy_at_gmail.com\n\nGithub:\nsamapriya.github.io", 
+            "title": "Contact Us"
+        }, 
+        {
+            "location": "/contact/#contact-us", 
+            "text": "Science Informatician, CyVerse\nResearch Associate, Bio5 Institute\nUniversity of Arizona\n\nAddress\nKeating Bioresearch Building, 0400D12\n1657 E. Helen St.\nTucson, AZ 85721\n\nTelephone\n(520) 621-4013\n\nEmail\ntswetnam_at_cyverse_dot_org   PhD Candidate\nIntern Senior Developer Advocate at Planet\nDepartment of Geography\nIndiana University\nBloomington, Indiana\n\nEmail:\nsamapriya.roy_at_gmail.com\n\nGithub:\nsamapriya.github.io", 
+            "title": "Contact Us"
         }
     ]
 }
