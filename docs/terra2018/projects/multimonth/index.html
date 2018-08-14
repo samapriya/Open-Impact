@@ -13,7 +13,7 @@
         <meta name="description" content="Pointcloud And Remote Sensing Workshop">
       
       
-        <link rel="canonical" href="https://planet.com/projects/edges/">
+        <link rel="canonical" href="https://planet.com/projects/multimonth/">
       
       
         <meta name="author" content="Samapriya Roy">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Edge Detection - Terra 2018 Pointcloud And Remote Sensing Workshop</title>
+        <title>Monthly Cloud free composites - Terra 2018 Pointcloud And Remote Sensing Workshop</title>
       
     
     
@@ -104,7 +104,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#edge-detection" tabindex="1" class="md-skip">
+      <a href="#monthly-cloud-free-composites-in-earth-engine" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -130,7 +130,7 @@
                 Terra 2018 Pointcloud And Remote Sensing Workshop
               </span>
               <span class="md-header-nav__topic">
-                Edge Detection
+                Monthly Cloud free composites
               </span>
             
           
@@ -449,10 +449,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
     
     <label class="md-nav__link" for="nav-7">
       Building a complete script
@@ -468,11 +470,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../multimonth/" title="Monthly Cloud free composites" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Monthly Cloud free composites" class="md-nav__link md-nav__link--active">
       Monthly Cloud free composites
     </a>
+    
   </li>
 
         
@@ -497,12 +508,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       Analytics in Earth Engine
@@ -518,20 +527,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Edge Detection" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
       Edge Detection
     </a>
-    
   </li>
 
         
@@ -603,44 +603,46 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/terra2018/edit/master/docs/projects/edges.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/terra2018/edit/master/docs/projects/multimonth.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="edge-detection">Edge Detection<a class="headerlink" href="#edge-detection" title="Permanent link">&para;</a></h1>
-<p>You can also run powerful functions such as edge detection using Hough and Canny transforms for example for single images as well as on collections to do edge counts, connectivity measures among a few other applications.</p>
-<p><center><img alt="Edges" src="../../images/edge_detection.gif" /></center></p>
-<p>Similar to earlier example you can access the <a href="https://code.earthengine.google.com/56fc8a053dd328c14166fc88fed8e8da">full script here</a> or copy and past the same code into <a href="https://code.earthengine.google.com">code.earthengine.google.com</a></p>
+                <h1 id="monthly-cloud-free-composites-in-earth-engine">Monthly Cloud Free Composites in Earth Engine<a class="headerlink" href="#monthly-cloud-free-composites-in-earth-engine" title="Permanent link">&para;</a></h1>
+<p>One of the most sought after functions in Earth Engine is the possibility of using deep time stack imagery to create cloud free composites. One of the simplest way of thinking about this is to use reducers that we talked about earlier, where we look at an entire stack of pixels and choose the median value of the distribution of pixel across stack and we end up getting a cloud free composite over the given time period. Depending on the number of images, the actual number of cloud free images in the overall stack your results may need more fine tune adjustments.</p>
+<p><center><img alt="composite" src="../../images/ee_composite.gif" /></center>
+<center><strong>Multi Month Composite: A single month is added FCC</strong></center></p>
+<p>For this setup we look at how we added PlanetScope Surface Reflectance data earlier , filtering it using date and Cloud cover for the scene. The next step we are building an function to calculate monthly composites from January to June 2018. Note that this is another way of creating a function where we have inserted the map function and the collection inside the function so it can be run directly. We might be interested in sorting these collections using year and hence we set the year as a metadata for each image in the cloud free composite. Depending on the type of imagery another good way of creating cloud free composites is by using the pixel qa bit bands in the Landsat surface reflectance imagery.</p>
+<p>You can get the <a href="https://code.earthengine.google.com/bd8654c0635e9ae2b8f6329b64e70234">complete code here</a> or copy and paste it from below</p>
 <div class="codehilite"><pre><span></span><span class="c1">//Add an AOI</span>
 <span class="kd">var</span> <span class="nx">aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/vector/aoi&quot;</span><span class="p">)</span>
 
 <span class="c1">//Zoom to AOI</span>
 <span class="nx">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">aoi</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
 
-<span class="c1">//Add image and visualization</span>
-<span class="kd">var</span> <span class="nx">image</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4bsr/20180115_175153_0e14_3B_AnalyticMS_SR&quot;</span><span class="p">)</span>
+<span class="c1">//Add an image collection</span>
+<span class="kd">var</span> <span class="nx">collection</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;projects/sat-io/terra2018/ps4bsr&#39;</span><span class="p">)</span>
+
+<span class="c1">//print collection properties</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;Collection&quot;</span><span class="p">,</span><span class="nx">collection</span><span class="p">)</span>
+
+<span class="c1">//Create Monthly Composite from PlanetScope Surface Reflectance</span>
+<span class="kd">var</span> <span class="nx">months</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">sequence</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">multimonth</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="nx">months</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">start</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nb">Date</span><span class="p">.</span><span class="nx">fromYMD</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">end</span> <span class="o">=</span> <span class="nx">start</span><span class="p">.</span><span class="nx">advance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">).</span><span class="nx">median</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">image</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span>
+<span class="p">}))</span>
+
+<span class="nx">print</span><span class="p">(</span><span class="nx">multimonth</span><span class="p">);</span>
+
+<span class="c1">//Add a visualization</span>
 <span class="kd">var</span> <span class="nx">vis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;b4&quot;</span><span class="p">,</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span><span class="s2">&quot;b2&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:-</span><span class="mf">433.8386769876429</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mf">2822.7077530529555</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">ndvi</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;b4&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">]);</span>
+<span class="c1">//Add the Image</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="nx">multimonth</span><span class="p">).</span><span class="nx">first</span><span class="p">()).</span><span class="nx">clip</span><span class="p">(</span><span class="nx">aoi</span><span class="p">),</span><span class="nx">vis</span><span class="p">,</span><span class="nx">ee</span><span class="p">.</span><span class="nb">String</span><span class="p">(</span><span class="s1">&#39;2018-&#39;</span><span class="p">).</span><span class="nx">cat</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nb">String</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="nx">multimonth</span><span class="p">).</span><span class="nx">first</span><span class="p">()).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">))).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">).</span><span class="nx">getInfo</span><span class="p">())</span>
 
-<span class="c1">// Apply a Canny edge detector.</span>
-<span class="kd">var</span> <span class="nx">canny</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
-  <span class="nx">image</span><span class="o">:</span> <span class="nx">ndvi</span><span class="p">,</span>
-  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.2</span>
-<span class="p">}).</span><span class="nx">multiply</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-
-<span class="c1">// Apply the Hough transform.</span>
-<span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">HoughTransform</span><span class="p">({</span>
-  <span class="nx">image</span><span class="o">:</span> <span class="nx">canny</span><span class="p">,</span>
-  <span class="nx">gridSize</span><span class="o">:</span> <span class="mi">256</span><span class="p">,</span>
-  <span class="nx">inputThreshold</span><span class="o">:</span> <span class="mi">80</span><span class="p">,</span>
-  <span class="nx">lineThreshold</span><span class="o">:</span> <span class="mi">80</span>
-<span class="p">});</span>
-
-<span class="c1">// Display.</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">vis</span><span class="p">,</span> <span class="s1">&#39;source_image&#39;</span><span class="p">);</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">,{</span><span class="nx">min</span><span class="o">:</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mf">0.5</span><span class="p">},</span> <span class="s1">&#39;NDVI&#39;</span><span class="p">,</span><span class="kc">false</span><span class="p">)</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">canny</span><span class="p">),</span> <span class="p">{</span><span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">palette</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">},</span> <span class="s1">&#39;canny&#39;</span><span class="p">);</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">h</span><span class="p">),</span> <span class="p">{</span><span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">palette</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">},</span> <span class="s1">&#39;hough&#39;</span><span class="p">);</span>
 <span class="nx">Map</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">)</span>
 </pre></div>
                 
@@ -663,7 +665,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../export/" title="Earth Engine exports" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../reducers/" title="Reducers and Charts" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -672,19 +674,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Earth Engine exports
+                Reducers and Charts
               </span>
             </div>
           </a>
         
         
-          <a href="../classification/" title="Skysat Image Classification" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../export/" title="Earth Engine exports" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Skysat Image Classification
+                Earth Engine exports
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
