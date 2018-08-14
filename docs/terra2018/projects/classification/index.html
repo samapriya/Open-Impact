@@ -607,10 +607,26 @@
                 
                 
                 <h1 id="image-clasification">Image Clasification<a class="headerlink" href="#image-clasification" title="Permanent link">&para;</a></h1>
-<p>Guess what we have high resolution imagery at about 70 cm and when Google had acquired Terra Bella(now known as Skysat) they made couple of image collections open source. So you can perform supervised image classification to test out some of the more advanced feature and then match this with field data. The example imagery is over Tehran and the three types of classification namely, random forest, cart and svm type clasifications are performed.</p>
+<p>Guess what we have high resolution imagery at about 70 cm and when Google had acquired Terra Bella(now known as Skysat) they made couple of image collections open source. So you can perform supervised image classification to test out some of the more advanced feature and then match this with field data. The example imagery is over Port of Lázaro Cárdenas and the three types of classification namely, random forest, cart and svm type clasifications are performed.</p>
 <p><center><img alt="ndvi" src="../../images/skysat_class.gif" /></center></p>
 <p>You can add the collection using the line below or type Skysat in the Image Catalog
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">skysat</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL&#39;</span><span class="p">)</span>
+</pre></div></p>
+<p>You can get link to the overall <a href="https://code.earthengine.google.com/8002be1166f4b814a90bfa8af3b18372">area code here</a></p>
+<p>To get to our specific area
+<div class="codehilite"><pre><span></span><span class="c1">//Add the collection</span>
+<span class="kd">var</span> <span class="nx">imageCollection</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL&quot;</span><span class="p">)</span>
+
+<span class="c1">//Add a point geometry to use as filter &amp; print size</span>
+<span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">102.17748642229708</span><span class="p">,</span> <span class="mf">17.942153910452422</span><span class="p">])</span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">imageCollection</span><span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">geometry</span><span class="p">).</span><span class="nx">size</span><span class="p">())</span>
+
+<span class="c1">//Add visualization</span>
+<span class="kd">var</span> <span class="nx">vis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;G&quot;</span><span class="p">,</span><span class="s2">&quot;R&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:</span><span class="mf">132.7061786684951</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mf">3655.0445459691864</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">imageCollection</span><span class="p">.</span><span class="nx">median</span><span class="p">(),</span><span class="nx">vis</span><span class="p">,</span><span class="s1">&#39;Skysat Median&#39;</span><span class="p">)</span>
+
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span><span class="o">-</span><span class="mf">102.16941833496094</span><span class="p">,</span><span class="mf">17.95048268223829</span><span class="p">,</span><span class="mi">14</span><span class="p">)</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">)</span>
 </pre></div></p>
                 
                   
