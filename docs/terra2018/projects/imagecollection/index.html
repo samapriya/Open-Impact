@@ -481,8 +481,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../multiyear/" title="Multiyear Cloud free composites" class="md-nav__link">
-      Multiyear Cloud free composites
+    <a href="../multiyear/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
     </a>
   </li>
 
@@ -529,8 +529,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ndvi/" title="Collection NDVI" class="md-nav__link">
-      Collection NDVI
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
+      Edge Detection
     </a>
   </li>
 
@@ -541,8 +541,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../edges/" title="Edge Detection" class="md-nav__link">
-      Edge Detection
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
     </a>
   </li>
 
@@ -617,18 +617,17 @@ As between the parties, Customer owns all Intellectual Property Rights
 in Customer Data, Customer Code, and Application(s), and Google owns
 all Intellectual Property Rights in the Services and Software.</code></strong></p>
 <p>These image collection as well as individual imaegs again have defined data type,scales and projections along with some default properties such as an index and ID among other system properties. So we can query these properties, print them and add them</p>
-<div class="codehilite"><pre><span></span><span class="c1">//Add an image collection</span>
-<span class="kd">var</span> <span class="nx">collection</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LT05/C01/T1_SR&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">filtered</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4bsr&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2018-03-01&#39;</span><span class="p">,</span><span class="s1">&#39;2018-03-31&#39;</span><span class="p">)</span><span class="c1">//Filter for March</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Date Filter Only&#39;</span><span class="p">,</span><span class="nx">filtered</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
 
-<span class="c1">//Filtering an Image Collection</span>
-<span class="kd">var</span> <span class="nx">filtered</span><span class="o">=</span><span class="nx">collection</span><span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;WRS_PATH&#39;</span><span class="p">,</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;WRS_ROW&#39;</span><span class="p">,</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span><span class="mi">39</span><span class="p">).</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">,</span><span class="s1">&#39;less_than&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="c1">//print filtered collection properties</span>
-<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;Filtered Collection&quot;</span><span class="p">,</span><span class="nx">filtered</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">filtered</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4bsr&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2018-03-01&#39;</span><span class="p">,</span><span class="s1">&#39;2018-03-31&#39;</span><span class="p">)</span><span class="c1">//Filter for March</span>
+<span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;cloud_cover&#39;</span><span class="p">,</span><span class="s1">&#39;less_than&#39;</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span><span class="c1">//Cloud cover less than 10%</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Multi Filter&#39;</span><span class="p">,</span><span class="nx">filtered</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
 </pre></div>
 
-<p>To have a look at all of the raster catalog you can find them <a href="https://code.earthengine.google.com/datasets">listed here</a></p>
+<p>To have a look at all of the raster catalog you can find them <a href="https://code.earthengine.google.com/datasets">listed here</a> or you can try the <a href="https://github.com/samapriya/Earth-Engine-Datasets-List">list I update every week</a></p>
                 
                   
                 

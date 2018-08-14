@@ -470,8 +470,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../multiyear/" title="Multiyear Cloud free composites" class="md-nav__link">
-      Multiyear Cloud free composites
+    <a href="../multiyear/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
     </a>
   </li>
 
@@ -518,18 +518,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../ndvi/" title="Collection NDVI" class="md-nav__link">
-      Collection NDVI
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -544,6 +532,18 @@
       Edge Detection
     </a>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
+    </a>
   </li>
 
         
@@ -609,29 +609,35 @@
                 <h1 id="edge-detection">Edge Detection<a class="headerlink" href="#edge-detection" title="Permanent link">&para;</a></h1>
 <p>You can also run powerful functions such as edge detection using Hough and Canny transforms for example for single images as well as on collections to do edge counts, connectivity measures among a few other applications.</p>
 <p><center><img alt="Edges" src="../../images/edge_detection.gif" /></center></p>
-<p>Similar to earlier example you can access the <a href="https://code.earthengine.google.com/3f572a3cc9a882a78063ae081a52ea03">full script here</a> or copy and past the same code into <a href="https://code.earthengine.google.com">code.earthengine.google.com</a></p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;users/samapriya/planet-impact/neon_ps4b_sr/20170415_171504_1005_3B_AnalyticMS_SR&quot;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">imagevis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;b4&quot;</span><span class="p">,</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span><span class="s2">&quot;b2&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:</span><span class="mi">671</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mi">4666</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+<p>Similar to earlier example you can access the <a href="https://code.earthengine.google.com/56fc8a053dd328c14166fc88fed8e8da">full script here</a> or copy and past the same code into <a href="https://code.earthengine.google.com">code.earthengine.google.com</a></p>
+<div class="codehilite"><pre><span></span><span class="c1">//Add an AOI</span>
+<span class="kd">var</span> <span class="nx">aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/vector/aoi&quot;</span><span class="p">)</span>
+
+<span class="c1">//Zoom to AOI</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">aoi</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1">//Add image and visualization</span>
+<span class="kd">var</span> <span class="nx">image</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4bsr/20180115_175153_0e14_3B_AnalyticMS_SR&quot;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">vis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;b4&quot;</span><span class="p">,</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span><span class="s2">&quot;b2&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:-</span><span class="mf">433.8386769876429</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mf">2822.7077530529555</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">ndvi</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;b4&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">]);</span>
 
 <span class="c1">// Apply a Canny edge detector.</span>
 <span class="kd">var</span> <span class="nx">canny</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
   <span class="nx">image</span><span class="o">:</span> <span class="nx">ndvi</span><span class="p">,</span>
-  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.3</span>
+  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.2</span>
 <span class="p">}).</span><span class="nx">multiply</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
 
 <span class="c1">// Apply the Hough transform.</span>
 <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">HoughTransform</span><span class="p">({</span>
   <span class="nx">image</span><span class="o">:</span> <span class="nx">canny</span><span class="p">,</span>
   <span class="nx">gridSize</span><span class="o">:</span> <span class="mi">256</span><span class="p">,</span>
-  <span class="nx">inputThreshold</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="nx">lineThreshold</span><span class="o">:</span> <span class="mi">100</span>
+  <span class="nx">inputThreshold</span><span class="o">:</span> <span class="mi">80</span><span class="p">,</span>
+  <span class="nx">lineThreshold</span><span class="o">:</span> <span class="mi">80</span>
 <span class="p">});</span>
 
 <span class="c1">// Display.</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span><span class="o">-</span><span class="mf">110.9959</span><span class="p">,</span> <span class="mf">31.8385</span><span class="p">,</span><span class="mi">13</span><span class="p">);</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">imagevis</span><span class="p">,</span> <span class="s1">&#39;source_image&#39;</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">vis</span><span class="p">,</span> <span class="s1">&#39;source_image&#39;</span><span class="p">);</span>
 <span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">,{</span><span class="nx">min</span><span class="o">:</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mf">0.5</span><span class="p">},</span> <span class="s1">&#39;NDVI&#39;</span><span class="p">,</span><span class="kc">false</span><span class="p">)</span>
 <span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">canny</span><span class="p">),</span> <span class="p">{</span><span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">palette</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">},</span> <span class="s1">&#39;canny&#39;</span><span class="p">);</span>
 <span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">h</span><span class="p">),</span> <span class="p">{</span><span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">palette</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">},</span> <span class="s1">&#39;hough&#39;</span><span class="p">);</span>
@@ -657,7 +663,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../ndvi/" title="Collection NDVI" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../export/" title="Earth Engine exports" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -666,19 +672,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Collection NDVI
+                Earth Engine exports
               </span>
             </div>
           </a>
         
         
-          <a href="../../citations/" title="Citations" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../classification/" title="Skysat Image Classification" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Citations
+                Skysat Image Classification
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

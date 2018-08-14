@@ -552,8 +552,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../multiyear/" title="Multiyear Cloud free composites" class="md-nav__link">
-      Multiyear Cloud free composites
+    <a href="../multiyear/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
     </a>
   </li>
 
@@ -600,8 +600,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ndvi/" title="Collection NDVI" class="md-nav__link">
-      Collection NDVI
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
+      Edge Detection
     </a>
   </li>
 
@@ -612,8 +612,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../edges/" title="Edge Detection" class="md-nav__link">
-      Edge Detection
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
     </a>
   </li>
 
@@ -762,22 +762,29 @@ and share documents that contain live code, equations, visualizations and narrat
 <p><center><code>pip install planet</code></center></p>
 <p>You installation steps from earlier means you have managed to not only create the Google Earth Engine account but also installed its client. Incase you have missed it go to their main reference page for installation of their python client. Since you can consume Earth Engine using both Javascript(in browser) and Python(locally).</p>
 <h4 id="3-location-to-gee-datasets">3) Location to GEE datasets<a class="headerlink" href="#3-location-to-gee-datasets" title="Permanent link">&para;</a></h4>
-<p>From <a href="https://cyverse-neon-data-institute-2018.readthedocs-hosted.com/en/latest/step5.html">Guillermo E. Ponce-Campos's earlier presentation</a>, you saw the application of some datasets within Google Earth Engine. If the data is maintained as open access then you can add any of the datasets by simply adding the following lines first</p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">neon_srer_hs</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;users/gponce/usda_ars/image_collections/neon_srer_2017_hs&quot;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">rgb10cm</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;users/gponce/usda_ars/image_collections/neon_srer_2017_rgb&quot;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">ltar_sites</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;users/gponce/usda_ars/shapefiles/LTAR/ltar_boundaries&quot;</span><span class="p">)</span>
+<p>For the purpose of this workshop, I have downloaded and ingested Planet imagery into three distinct colllections (PlanetScope 4 Band analytic, Planet 4 analytic surface analytic, RapidEye OrthoTile) If the data is maintained as open access license, you can add any of the datasets by simply adding the following lines. For now you access these here</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">planetscope4b</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4b&quot;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">planetscope4b_sr</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4bsr&quot;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">rapideye</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/reo&quot;</span><span class="p">)</span>
 
 <span class="c1">//get size of collection</span>
-<span class="nx">print</span><span class="p">(</span><span class="nx">neon_sres_hs</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;PlanetScope Size&quot;</span><span class="p">,</span><span class="nx">planetscope4b</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;PlanetScope SR&quot;</span><span class="p">,</span><span class="nx">planetscope4b_sr</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;RapidEye size&quot;</span><span class="p">,</span><span class="nx">rapideye</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
+
+<span class="c1">//Get the first element from each collection</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;PS Image&quot;</span><span class="p">,</span><span class="nx">planetscope4b</span><span class="p">.</span><span class="nx">first</span><span class="p">())</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;PSR Image&quot;</span><span class="p">,</span><span class="nx">planetscope4b_sr</span><span class="p">.</span><span class="nx">first</span><span class="p">())</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&quot;REO Image&quot;</span><span class="p">,</span><span class="nx">rapideye</span><span class="p">.</span><span class="nx">first</span><span class="p">())</span>
 </pre></div>
 
 <p>for those using python API you can still access a collection</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
 <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
-<span class="n">neon_sres_hs</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;users/gponce/usda_ars/image_collections/neon_srer_2017_hs&quot;</span><span class="p">)</span>
+<span class="n">planetscope</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4b&quot;</span><span class="p">)</span>
 
 <span class="c1">##you can even check how many images does the collection have</span>
-<span class="k">print</span><span class="p">(</span><span class="n">neon_sres_hs</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">planetscope</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
 </pre></div>
 
 <h4 id="4-adding-additional-images">4) Adding additional Images<a class="headerlink" href="#4-adding-additional-images" title="Permanent link">&para;</a></h4>

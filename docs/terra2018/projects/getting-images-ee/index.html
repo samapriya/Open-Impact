@@ -481,8 +481,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../multiyear/" title="Multiyear Cloud free composites" class="md-nav__link">
-      Multiyear Cloud free composites
+    <a href="../multiyear/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
     </a>
   </li>
 
@@ -529,8 +529,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ndvi/" title="Collection NDVI" class="md-nav__link">
-      Collection NDVI
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
+      Edge Detection
     </a>
   </li>
 
@@ -541,8 +541,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../edges/" title="Edge Detection" class="md-nav__link">
-      Edge Detection
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
     </a>
   </li>
 
@@ -609,7 +609,7 @@
                 <h1 id="getting-images-into-google-earth-engine">Getting Images into Google Earth Engine<a class="headerlink" href="#getting-images-into-google-earth-engine" title="Permanent link">&para;</a></h1>
 <p>For the simplest users getting images into GEE begins with the Image upload tool located inside GEE. Once you have added the filename you can edit additional metadata such as start time, cloud cover information if you have that from the metadata file among other things. This tool does not have a way for you to ingest any metadata automatically so it has to be fed manually.</p>
 <p>The image name is automatically filled in with the filename that you select when uploading.</p>
-<p><img alt="Image Upload" src="https://i.imgur.com/UheUme1.gif" /></p>
+<p><img alt="Image Upload" src="../../images/upload_gee.gif" /></p>
 <p>Note you cannot select more than one image and upload as a single image if they overlap each other. To handle which we have the concept of image collections. Where you can upload many images. To import images into collections, you have to either import them manually as images first and then copy them into the collection one by one or for now use an external tool to help.</p>
 <p>For now you can use the tool I made to batch upload collections along with their metadata into Google Earth Engine. You can read about the tool, it's setup and it's operation at <a href="https://medium.com/planet-stories/planet-people-and-pixels-a-data-pipeline-to-link-planet-api-to-google-earth-engine-1166606445a8">this Planet Story</a></p>
 <p>Incase you have a Google Cloud Storage bucket you can also push images automatically to be ingested into GEE. Though this requires interaction with gsutil and starting ingestion function for each image. The GEE guide for image ingestion can be <a href="https://developers.google.com/earth-engine/image_upload">found here</a></p>

@@ -481,8 +481,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../multiyear/" title="Multiyear Cloud free composites" class="md-nav__link">
-      Multiyear Cloud free composites
+    <a href="../multiyear/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
     </a>
   </li>
 
@@ -529,8 +529,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ndvi/" title="Collection NDVI" class="md-nav__link">
-      Collection NDVI
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
+      Edge Detection
     </a>
   </li>
 
@@ -541,8 +541,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../edges/" title="Edge Detection" class="md-nav__link">
-      Edge Detection
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
     </a>
   </li>
 
@@ -610,16 +610,21 @@
 <p>While single image operations are direct and can be applied to the imagery for a one to one result. Applying any kind of analysis on a single image means you have to call the image and run the analysis which is quick and easy. To be able to turn this same into a function that you can iterate over an entire collection requires us to convert a single analysis to a function. A function is then mapped or run over an entire collection. To avoid any errors make sure that the collection images are consistent and have same name and number of band and characteristics.</p>
 <p><center><img alt="Imagery" src="../../images/ee_reduce.png" /></center>
 <center><strong>Source: <a href="https://developers.google.com/earth-engine/reducers_image_collection">Image Collection Reductions from Google Earth Engine</a></strong></center></p>
-<p>For this setup we look at how we added Landsat 5 Surface Reflectance data earlier , filtering it using WRS Path and Row and further using Cloud cover for the scene. The next step we are building an function to calculate Normalized Difference Vegetation Index (NDVI) over the entire collection which takes an image collection and iteratively passes an image to the function. The resultant structure is also an image collection where we are returning a single band which is the NDVI. Note that we also renamed the band to NDVI since they are not autorenamed. Now the additional step we added here was running the produced collection through a median reducer. We can then print the median values. The last step we create a setup for the chart and the plot the chart of the median</p>
-<p><div class="codehilite"><pre><span></span><span class="cm">/*Add some field points and name the geometry</span>
-<span class="cm">as field this script won&#39;t work till then*/</span>
+<p>For this setup we look at how we added PlanetScope Surface Reflectance data earlier , filtering it using date and Cloud cover for the scene. The next step we are building an function to calculate Normalized Difference Vegetation Index (NDVI) over the entire collection which takes an image collection and iteratively passes an image to the function. The resultant structure is also an image collection where we are returning a single band which is the NDVI. Note that we also renamed the band to NDVI since they are not autorenamed. Now the additional step we added here was running the produced collection through a median reducer. We can then print the median values.</p>
+<p><center><img alt="ndvi" src="../../images/ee_ndvi.gif" /></center></p>
+<p>You can access the <a href="https://code.earthengine.google.com/454c8a49ea2f99ccd5102a833eb0e733">code here</a> or copy and paste from below</p>
+<div class="codehilite"><pre><span></span><span class="c1">//Add an AOI</span>
+<span class="kd">var</span> <span class="nx">aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/vector/aoi&quot;</span><span class="p">)</span>
+
+<span class="c1">//Zoom to AOI</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">aoi</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
 
 <span class="c1">//Add an image collection</span>
-<span class="kd">var</span> <span class="nx">collection</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LT05/C01/T1_SR&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">collection</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;projects/sat-io/terra2018/ps4bsr&#39;</span><span class="p">)</span>
 
 <span class="c1">//Filtering an Image Collection</span>
-<span class="kd">var</span> <span class="nx">filtered</span><span class="o">=</span><span class="nx">collection</span><span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;WRS_PATH&#39;</span><span class="p">,</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;WRS_ROW&#39;</span><span class="p">,</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span><span class="mi">39</span><span class="p">).</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">,</span><span class="s1">&#39;less_than&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">filtered</span><span class="o">=</span><span class="nx">collection</span><span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="s1">&#39;2018-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2018-07-01&#39;</span><span class="p">)</span><span class="c1">//Filter for March</span>
+<span class="p">.</span><span class="nx">filterMetadata</span><span class="p">(</span><span class="s1">&#39;cloud_cover&#39;</span><span class="p">,</span><span class="s1">&#39;less_than&#39;</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span><span class="c1">//Cloud cover less than 20%</span>
 
 <span class="c1">//print filtered collection properties</span>
 <span class="nx">print</span><span class="p">(</span><span class="s2">&quot;Filtered Collection&quot;</span><span class="p">,</span><span class="nx">filtered</span><span class="p">)</span>
@@ -628,7 +633,7 @@
 <span class="cm">/*==================================================*/</span>
 <span class="c1">//Writing a function</span>
 <span class="kd">var</span> <span class="nx">addNDVI</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">ndvi</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">ndvi</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;b4&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
   <span class="k">return</span> <span class="nx">ndvi</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -636,38 +641,16 @@
 <span class="nx">print</span><span class="p">(</span><span class="s2">&quot;NDVI Collection&quot;</span><span class="p">,</span><span class="nx">ndvicoll</span><span class="p">)</span>
 
 <span class="c1">//Let&#39;s add a palette for us to show the results</span>
-<span class="kd">var</span> <span class="nx">ndvivis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:-</span><span class="mf">0.5182320475578308</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mf">0.7803871631622314</span><span class="p">,</span><span class="s2">&quot;palette&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;d49e8a&quot;</span><span class="p">,</span><span class="s2">&quot;ffcfb4&quot;</span><span class="p">,</span><span class="s2">&quot;ecffcf&quot;</span><span class="p">,</span><span class="s2">&quot;94ff8d&quot;</span><span class="p">,</span><span class="s2">&quot;3eff56&quot;</span><span class="p">,</span><span class="s2">&quot;15cc23&quot;</span><span class="p">]};</span>
+<span class="kd">var</span> <span class="nx">ndvivis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:-</span><span class="mf">0.259</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mf">0.57</span><span class="p">,</span><span class="s2">&quot;palette&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;d49e8a&quot;</span><span class="p">,</span><span class="s2">&quot;ffcfb4&quot;</span><span class="p">,</span><span class="s2">&quot;ecffcf&quot;</span><span class="p">,</span><span class="s2">&quot;94ff8d&quot;</span><span class="p">,</span><span class="s2">&quot;3eff56&quot;</span><span class="p">,</span><span class="s2">&quot;15cc23&quot;</span><span class="p">]};</span>
 
 <span class="c1">//Add the first of the result</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">ndvicoll</span><span class="p">.</span><span class="nx">first</span><span class="p">()),</span><span class="nx">ndvivis</span><span class="p">,</span><span class="s2">&quot;NDVI&quot;</span><span class="p">)</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">ndvicoll</span><span class="p">.</span><span class="nx">first</span><span class="p">()).</span><span class="nx">clip</span><span class="p">(</span><span class="nx">aoi</span><span class="p">),</span><span class="nx">ndvivis</span><span class="p">,</span><span class="s2">&quot;NDVI&quot;</span><span class="p">)</span>
 
 <span class="c1">//Add an reducer</span>
-<span class="kd">var</span> <span class="nx">ndviav</span><span class="o">=</span><span class="nx">ndvicoll</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">median</span><span class="p">());</span>
+<span class="kd">var</span> <span class="nx">ndviav</span><span class="o">=</span><span class="nx">ndvicoll</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">max</span><span class="p">());</span>
 
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ndviav</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI_median&#39;</span><span class="p">).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">),</span><span class="nx">ndvivis</span><span class="p">,</span><span class="s2">&quot;NDVI Median&quot;</span><span class="p">)</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ndviav</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI_max&#39;</span><span class="p">).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">).</span><span class="nx">clip</span><span class="p">(</span><span class="nx">aoi</span><span class="p">),</span><span class="nx">ndvivis</span><span class="p">,</span><span class="s2">&quot;NDVI Max&quot;</span><span class="p">)</span>
 <span class="nx">print</span><span class="p">(</span><span class="nx">ndviav</span><span class="p">)</span>
-</pre></div>
-<center><img alt="ndvi" src="../../images/ee_ndvi.JPG" /></center>
-<center><img alt="chart" src="../../images/ee_chart.JPG" /></center>
-<center><strong>Top: Field points to look at median NDVI, Bottom: Chart generated from field point</strong></center></p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">ndvionly</span><span class="o">=</span><span class="nx">ndviav</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI_median&#39;</span><span class="p">).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">)</span>
-
-<span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">byRegion</span><span class="p">({</span>
-  <span class="nx">image</span><span class="o">:</span> <span class="nx">ndvionly</span><span class="p">,</span>
-  <span class="nx">regions</span><span class="o">:</span> <span class="nx">field</span><span class="p">,</span>
-  <span class="nx">scale</span><span class="o">:</span> <span class="mi">30</span>
-<span class="p">});</span>
-<span class="nx">chart</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">({</span>
-  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Charting NDVI&#39;</span><span class="p">,</span>
-  <span class="nx">vAxis</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;NDVI&#39;</span>
-  <span class="p">},</span>
-  <span class="nx">legend</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
-  <span class="nx">lineWidth</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">pointSize</span><span class="o">:</span> <span class="mi">4</span>
-<span class="p">});</span>
-
-<span class="nx">print</span><span class="p">(</span><span class="nx">chart</span><span class="p">);</span>
 </pre></div>
                 
                   
@@ -704,13 +687,13 @@
           </a>
         
         
-          <a href="../multiyear/" title="Multiyear Cloud free composites" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../multiyear/" title="Monthly Cloud free composites" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Multiyear Cloud free composites
+                Monthly Cloud free composites
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
