@@ -76,6 +76,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://planet.com/projects/explore/</loc>
+     <lastmod>2018-08-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://planet.com/citations/</loc>
      <lastmod>2018-08-14</lastmod>
      <changefreq>daily</changefreq>
