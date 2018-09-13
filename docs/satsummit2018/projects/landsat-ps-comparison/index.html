@@ -1,0 +1,1227 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Satellite data for global development">
+      
+      
+        <link rel="canonical" href="https://samapriya.github.io/projects/open-impact/projects/landsat-ps-comparison/">
+      
+      
+        <meta name="author" content="Samapriya Roy">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Landsat Planet Comparisons - Sat Summit 2018</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#7e57c2">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-purple" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#comparing-landsat-and-planetscope-scenes" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://samapriya.github.io/projects/open-impact/" title="Sat Summit 2018" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Sat Summit 2018
+              </span>
+              <span class="md-header-nav__topic">
+                Landsat Planet Comparisons
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      SatSummit 2018
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://samapriya.github.io/projects/open-impact/" title="Sat Summit 2018" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Sat Summit 2018
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      SatSummit 2018
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="ARD Analysis" class="md-nav__link">
+      ARD Analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../planet-asset/" title="Planet Imagery" class="md-nav__link">
+      Planet Imagery
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rpl/" title="Setting up your Accounts" class="md-nav__link">
+      Setting up your Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../housekeeping/" title="Basic Housekeeping and Setup" class="md-nav__link">
+      Basic Housekeeping and Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../downloading-images/" title="Downloading Images" class="md-nav__link">
+      Downloading Images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getting-images-ee/" title="Getting Images into Google Earth Engine" class="md-nav__link">
+      Getting Images into Google Earth Engine
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      The Pythonic Method
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        The Pythonic Method
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Landsat Planet Comparisons
+      </label>
+    
+    <a href="./" title="Landsat Planet Comparisons" class="md-nav__link md-nav__link--active">
+      Landsat Planet Comparisons
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#comparing-landsat-and-planetscope-scenes" title="Comparing Landsat and PlanetScope Scenes" class="md-nav__link">
+    Comparing Landsat and PlanetScope Scenes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-dependencies-and-set-up-notebook" title="Install Dependencies and Set up Notebook" class="md-nav__link">
+    Install Dependencies and Set up Notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-scenes" title="Download Scenes" class="md-nav__link">
+    Download Scenes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-planetscope-orthotile-scene" title="Download PlanetScope Orthotile Scene" class="md-nav__link">
+    Download PlanetScope Orthotile Scene
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-landsat-nir-band" title="Download Landsat NIR Band" class="md-nav__link">
+    Download Landsat NIR Band
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warp-landsat-scene-to-planet-scene" title="Warp Landsat Scene to Planet Scene" class="md-nav__link">
+    Warp Landsat Scene to Planet Scene
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-and-visualize-nir-bands" title="Load and Visualize NIR Bands" class="md-nav__link">
+    Load and Visualize NIR Bands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compare-nir-bands" title="Compare NIR Bands" class="md-nav__link">
+    Compare NIR Bands
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Inspecting Satellite Imagery/" title="Inspecting Satellite Imagery" class="md-nav__link">
+      Inspecting Satellite Imagery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Visualizing Satellite Imagery/" title="Visualizing Satellite Imagery" class="md-nav__link">
+      Visualizing Satellite Imagery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      The Earth Engine Method
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        The Earth Engine Method
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../planetee/" title="Planet & Google Earth Engine" class="md-nav__link">
+      Planet & Google Earth Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Image & Image Collections in Earth Engine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Image & Image Collections in Earth Engine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../images/" title="Images" class="md-nav__link">
+      Images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../imagecollection/" title="Image Collection" class="md-nav__link">
+      Image Collection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Functions & Reducers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Functions & Reducers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reducers/" title="Reducers and Charts" class="md-nav__link">
+      Reducers and Charts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      Building a complete script
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-4">
+        Building a complete script
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multimonth/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../export/" title="Earth Engine exports" class="md-nav__link">
+      Earth Engine exports
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5">
+    
+    <label class="md-nav__link" for="nav-5-5">
+      Analytics in Earth Engine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-5">
+        Analytics in Earth Engine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
+      Edge Detection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Extra Addon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Extra Addon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../explore/" title="PlanetScope Explorer & Exporter" class="md-nav__link">
+      PlanetScope Explorer & Exporter
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citations/" title="Citations" class="md-nav__link">
+      Citations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contact/" title="Contact Us" class="md-nav__link">
+      Contact Us
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#comparing-landsat-and-planetscope-scenes" title="Comparing Landsat and PlanetScope Scenes" class="md-nav__link">
+    Comparing Landsat and PlanetScope Scenes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-dependencies-and-set-up-notebook" title="Install Dependencies and Set up Notebook" class="md-nav__link">
+    Install Dependencies and Set up Notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-scenes" title="Download Scenes" class="md-nav__link">
+    Download Scenes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-planetscope-orthotile-scene" title="Download PlanetScope Orthotile Scene" class="md-nav__link">
+    Download PlanetScope Orthotile Scene
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-landsat-nir-band" title="Download Landsat NIR Band" class="md-nav__link">
+    Download Landsat NIR Band
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warp-landsat-scene-to-planet-scene" title="Warp Landsat Scene to Planet Scene" class="md-nav__link">
+    Warp Landsat Scene to Planet Scene
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-and-visualize-nir-bands" title="Load and Visualize NIR Bands" class="md-nav__link">
+    Load and Visualize NIR Bands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compare-nir-bands" title="Compare NIR Bands" class="md-nav__link">
+    Compare NIR Bands
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/edit/master/docs/projects/landsat-ps-comparison.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Landsat Planet Comparisons</h1>
+                
+                <h2 id="comparing-landsat-and-planetscope-scenes">Comparing Landsat and PlanetScope Scenes<a class="headerlink" href="#comparing-landsat-and-planetscope-scenes" title="Permanent link">&para;</a></h2>
+<p>A common and powerful workflow for analysis is comparing or combining information from multiple sources. This tutorial demonstrates comparing a set of Landsat and PlanetScope scenes.</p>
+<p>In this tutorial, <a href="/files/landsat-ps-comparison.ipynb">and the notebook</a> we download scenes from the two sensors taken on the same day at the same place, visualize them, resample the Landsat scene to match the pixel resolution and locations of the PlanetScope scene, and perform pixel-by-pixel comparison of their near-infrared (NIR) bands.</p>
+<p>Our comparison of the NIR bands is identification of the difference between the scaled NIR bands. We find that most differences between the NIR bands are at high-resolution features and are due to the lower resolution of the Landsat scene. However, we also find a few fields show noticeable difference in the NIR bands. We theorize that these differences may be due to the different spectral responses of the two sensors and the fields containing different crop types than the surrounding fields. These results suggest that an analysis utilizing both Landsat8 and PlanetScope scenes may be able to better differentiate crop types than just using one sensor.</p>
+<p>Ideas for extending beyond this notebook:
+1. Mask the scenes using the PlanetScope Unusable Data Mask and Landsat Quality Assurance bands
+2. Convert the PlanetScope scene to reflectance and then do not normalize the bands in the difference calculation</p>
+<h2 id="install-dependencies-and-set-up-notebook">Install Dependencies and Set up Notebook<a class="headerlink" href="#install-dependencies-and-set-up-notebook" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">,</span> <span class="n">CalledProcessError</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+
+<h2 id="download-scenes">Download Scenes<a class="headerlink" href="#download-scenes" title="Permanent link">&para;</a></h2>
+<p>In the <a href="/crossovers/ps_l8_crossovers.ipynb">crossovers notebook</a>, we identified many Landsat/PlanetScope crossovers within the same day that occured between January and August 2017. From that list, we are going to download the following set of scenes:
+ - <a href="https://api.planet.com/data/v1/item-types/PSOrthoTile/items/644787_1056721_2017-07-25_0f52/thumb">PSOrthoTile 644787_1056721_2017-07-25_0f52</a>
+ - <a href="https://api.planet.com/data/v1/item-types/Landsat8L1G/items/LC80430332017206LGN00/thumb">Landsat8L1G LC80430332017206LGN00</a></p>
+<table>
+<thead>
+<tr>
+<th align="center">PSOrthoTile</th>
+<th align="center">Landsat8L1G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="644787_1056721_2017-07-25_0f52" src="/images/644787_1056721_2017-07-25_0f52_thumb.png" title="644787_1056721_2017-07-25_0f52" /></td>
+<td align="center"><img alt="LC80430332017206LGN00" src="/images/LC80430332017206LGN00_thumb.png" title="LC80430332017206LGN00" /></td>
+</tr>
+</tbody>
+</table>
+<p>These scenes represent a crossover between Landsat8 and PlanetScope on July 25, 2017.</p>
+<p>For the Landsat8L1G scene, we download band 5, which is the NIR band (<a href="https://landsat.usgs.gov/what-are-band-designations-landsat-satellites">ref</a>).</p>
+<p>To download the scenes, we use the planet CLI because it handles activating, waiting for activation, and downloading the file.</p>
+<p>We will save the scenes in the <code>data</code> folder. This folder isn't tracked by git so the downloaded image file will not bloat our git repository.</p>
+<h3 id="download-planetscope-orthotile-scene">Download PlanetScope Orthotile Scene<a class="headerlink" href="#download-planetscope-orthotile-scene" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="c1"># create the data folder if it doesn&#39;t exist</span>
+<span class="n">data_folder</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">):</span> <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># first test if scene file exists, if not, use planet cli to download image</span>
+<span class="c1"># note that this assumes a bash shell, available in unix-based operating systems</span>
+<span class="err">!</span><span class="n">test</span> <span class="o">-</span><span class="n">f</span> <span class="n">data</span><span class="o">/</span><span class="mi">644787</span><span class="n">_1056721_2017</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">25</span><span class="n">_0f52_BGRN_Analytic</span><span class="o">.</span><span class="n">tif</span> <span class="o">||</span> \
+    <span class="n">planet</span> <span class="n">data</span> <span class="n">download</span> <span class="o">--</span><span class="n">item</span><span class="o">-</span><span class="nb">type</span> <span class="n">PSOrthoTile</span> \
+                      <span class="o">--</span><span class="n">asset</span><span class="o">-</span><span class="nb">type</span> <span class="n">analytic</span> \
+                      <span class="o">--</span><span class="n">string</span><span class="o">-</span><span class="ow">in</span> <span class="nb">id</span> <span class="mi">644787</span><span class="n">_1056721_2017</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">25</span><span class="n">_0f52</span> \
+                      <span class="o">--</span><span class="n">dest</span> <span class="n">data</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># store the image filename for processing and make sure the file exists</span>
+<span class="n">pl_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;644787_1056721_2017-07-25_0f52_BGRN_Analytic.tif&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>/data/644787_1056721_2017-07-25_0f52_BGRN_Analytic.tif
+</pre></div>
+
+
+<h3 id="download-landsat-nir-band">Download Landsat NIR Band<a class="headerlink" href="#download-landsat-nir-band" title="Permanent link">&para;</a></h3>
+<p>Landsat is distributed with each asset as an individual band. Band 5 is the NIR band. Since we only plan on using the NIR band, we will download just that asset.</p>
+<p>NOTE: The command below should work, but currently there is a bug in the planet CLI.
+Until that is fixed, use the curl command to download the asset from the endpoint directly.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># !planet data download --item-type Landsat8L1G \</span>
+<span class="c1">#                       --asset-type analytic_b5 \</span>
+<span class="c1">#                       --string-in id LC80430332017206LGN00 \</span>
+<span class="c1">#                       --dest data</span>
+<span class="c1"># !ls -l --block-size=M data</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># The long way of downloading an asset. Doesn&#39;t use the planet CLI</span>
+
+<span class="k">def</span> <span class="nf">get_auth</span><span class="p">():</span>
+    <span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PL_API_KEY&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">auth</span>
+
+<span class="k">def</span> <span class="nf">get_asset_info</span><span class="p">(</span><span class="n">asset</span><span class="p">):</span>
+    <span class="n">auth</span> <span class="o">=</span> <span class="n">get_auth</span><span class="p">()</span>
+    <span class="n">item_assets_url</span> <span class="o">=</span> <span class="s1">&#39;https://api.planet.com/data/v1/item-types/Landsat8L1G/items/LC80430332017206LGN00/assets/&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item_assets_url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+    <span class="n">assets_resp</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">assets_resp</span><span class="p">[</span><span class="n">asset</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="n">asset</span><span class="p">):</span>
+    <span class="n">asset_info</span> <span class="o">=</span> <span class="n">get_asset_info</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span>
+    <span class="n">activation_link</span> <span class="o">=</span> <span class="n">asset_info</span><span class="p">[</span><span class="s1">&#39;_links&#39;</span><span class="p">][</span><span class="s1">&#39;activate&#39;</span><span class="p">]</span>
+    <span class="n">auth</span> <span class="o">=</span> <span class="n">get_auth</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">activation_link</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">204</span>
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">asset</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">asset_info</span> <span class="o">=</span> <span class="n">get_asset_info</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span>
+        <span class="n">download_link</span> <span class="o">=</span> <span class="n">asset_info</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span>
+        <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">download_link</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+<span class="n">asset</span> <span class="o">=</span> <span class="s1">&#39;analytic_b5&#39;</span>
+<span class="n">activate</span><span class="p">(</span><span class="n">asset</span><span class="p">)</span>
+
+<span class="c1"># it may take a while for the asset to be activated. If this fails, wait a while and rerun</span>
+<span class="n">landsat_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;LC80430332017206LGN00_{}.tif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">asset</span><span class="p">))</span>
+<span class="n">download</span><span class="p">(</span><span class="n">asset</span><span class="p">,</span> <span class="n">landsat_filename</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># store the Landsat band filename for processing and make sure the file exists</span>
+<span class="n">l8_nir_orig_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;LC80430332017206LGN00_analytic_b5.tif&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">l8_nir_orig_filename</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">l8_nir_orig_filename</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>/data/LC80430332017206LGN00_analytic_b5.tif
+</pre></div>
+
+
+<h2 id="warp-landsat-scene-to-planet-scene">Warp Landsat Scene to Planet Scene<a class="headerlink" href="#warp-landsat-scene-to-planet-scene" title="Permanent link">&para;</a></h2>
+<p>For pixel-by-pixel comparison of the Landsat and Planet scenes, the two scenes must have the same extents, the pixels must be the same size, and the pixels must exactly overlap each other. This can all be achieved by warping one scene to the other scene. We warp the Landsat scene to the Planet scene because the Planet scene is much higher resolution than the Landsat scene and we want to use the highest resolution possible for our comparison.</p>
+<p>The GDAL command-line interface, specifically <a href="http://www.gdal.org/gdalwarp.html">gdalwarp</a>, is the easiest way to warp one image to another image.</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prepare_l8_band</span><span class="p">(</span><span class="n">band_filename</span><span class="p">,</span> <span class="n">dst_filename</span><span class="p">,</span> <span class="n">out_filename</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Project, crop, and resample landsat 8 band to match dst_filename image.&#39;&#39;&#39;</span>
+
+    <span class="c1"># we use &#39;cubic&#39; method for interpolation because band represents continuous data</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;cubic&#39;</span>
+
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">band_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dst_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+            <span class="c1"># crop</span>
+            <span class="n">crop_options</span> <span class="o">=</span> <span class="n">_gdalwarp_crop_options</span><span class="p">(</span><span class="n">dst</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dst</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+            <span class="c1"># resample</span>
+            <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">dst</span><span class="o">.</span><span class="n">shape</span>
+            <span class="n">resample_options</span> <span class="o">=</span> <span class="n">_gdalwarp_resample_options</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">method</span><span class="p">)</span>
+
+            <span class="n">options</span> <span class="o">=</span> <span class="n">crop_options</span> <span class="o">+</span> <span class="n">resample_options</span>
+
+            <span class="c1"># run gdalwarp</span>
+            <span class="n">_gdalwarp</span><span class="p">(</span><span class="n">band_filename</span><span class="p">,</span> <span class="n">out_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_gdalwarp_crop_options</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">crs</span><span class="p">):</span>
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-te&#39;</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">_gdalwarp_resample_options</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">technique</span><span class="p">):</span>
+    <span class="c1"># for technique options, see: http://www.gdal.org/gdalwarp.html</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-ts&#39;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">technique</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">_gdalwarp</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="n">commands</span> <span class="o">=</span> <span class="n">_gdalwarp_commands</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+    <span class="c1"># print error if one is encountered</span>
+    <span class="c1"># https://stackoverflow.com/questions/29580663/save-error-message-of-subprocess-command</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">commands</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_gdalwarp_commands</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gdalwarp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">options</span> <span class="o">+</span> \
+               <span class="p">[</span><span class="s1">&#39;-overwrite&#39;</span><span class="p">,</span>
+                <span class="n">input_filename</span><span class="p">,</span>
+                <span class="n">output_filename</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">commands</span>
+
+<span class="n">l8_nir_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;LC80430332017206LGN00_analytic_b5_warped.tif&#39;</span><span class="p">)</span>
+<span class="n">prepare_l8_band</span><span class="p">(</span><span class="n">l8_nir_orig_filename</span><span class="p">,</span> <span class="n">pl_filename</span><span class="p">,</span> <span class="n">l8_nir_filename</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>gdalwarp -te 643500.0 4223500.0 668500.0 4248500.0 -ts 8000 8000 -r cubic -overwrite data/LC80430332017206LGN00_analytic_b5.tif data/LC80430332017206LGN00_analytic_b5_warped.tif
+</pre></div>
+
+
+<h2 id="load-and-visualize-nir-bands">Load and Visualize NIR Bands<a class="headerlink" href="#load-and-visualize-nir-bands" title="Permanent link">&para;</a></h2>
+<p>Before moving on to comparing the NIR bands, we load the NIR bands from each scene and visualize the bands.</p>
+<p>Instead of including a huge chunk of code for visualizing the NIR band, we put that code in a local script (<a href="/files/visual.py">visual.py</a>) and import here.</p>
+<p>Ideally, we would use the PlanetScope Unusable Data Mask (UDM) and Landsat Quality Assurance (QA) bands to create the pixel masks. In the interest of keeping this tutorial focused, we perform a simple and brute-force masking where we mask pixels that are equal to the blackfill NoData value, 0.</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">load_l8_nir</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">l8_nir_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">nir_band</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># mask wherever the pixel value is the NoData value, 0</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">nir_band</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nir_band</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="n">l8_nir_band</span> <span class="o">=</span> <span class="n">load_l8_nir</span><span class="p">()</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">)</span>
+</pre></div>
+
+<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_14_0.png" /></p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">load_pl_nir</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">band_num</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">nir_band</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="n">band_num</span><span class="p">]</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">nir_band</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="c1">#         mask = src.read_masks()[band_num] == 0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nir_band</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="n">pl_nir_band</span> <span class="o">=</span> <span class="n">load_pl_nir</span><span class="p">()</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">pl_nir_band</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PSOrthotile NIR&#39;</span><span class="p">)</span>
+</pre></div>
+
+<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_15_0.png" /></p>
+<h2 id="compare-nir-bands">Compare NIR Bands<a class="headerlink" href="#compare-nir-bands" title="Permanent link">&para;</a></h2>
+<p>In this section we look at the difference in response between the NIR bands of the two sensors.</p>
+<p>The difference is calculated as the absolute value of the subtraction of one normalized NIR band from the other normalized NIR band.</p>
+<p>Note: Landsat8 is corrected to reflectance and PlanetScope is corrected to radiance. The conversion between reflectance and radiance is achieved by scaling the entire band. In this comparison, we normalize the two NIR bands to 0-1 anyway, so the radiance/reflectance difference doesn't affect us.</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">old_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">new_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_max</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">old_min</span> <span class="o">=</span> <span class="n">old_min</span> <span class="k">if</span> <span class="n">old_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">old_max</span> <span class="o">=</span> <span class="n">old_max</span> <span class="k">if</span> <span class="n">old_max</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># https://en.wikipedia.org/wiki/Normalization_(image_processing)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ndarray</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_max</span> <span class="o">-</span> <span class="n">new_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">old_max</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">new_min</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1"># Scale the bands so that the maximum value is 1</span>
+<span class="n">diff_band</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">l8_nir_band</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">normalize</span><span class="p">(</span><span class="n">pl_nir_band</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># if a pixel is masked in either of the NIR bands, mask it in the difference band</span>
+<span class="n">diff_band</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">pl_nir_band</span><span class="o">.</span><span class="n">mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">diff_band</span><span class="p">])</span>
+</pre></div>
+
+<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_19_0.png" /></p>
+<p>In general, the major differences between the NIR bands occur at high-resolution features (edges of fields, roads, and populated areas) and are caused by the lower resolution of the Landsat8 sensor. However, there are a few larger regions, which appear to be fields, that show some difference between the NIR bands.</p>
+<p>Lets zoom into one such region, the square field located just right of center of the image.</p>
+<div class="codehilite"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">:</span><span class="mi">5000</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3500</span><span class="p">:</span><span class="mi">5500</span><span class="p">])</span> <span class="c1"># create a (rows, columns) numpy slice for indexing the array</span>
+<span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">diff_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;NIR Difference&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">pl_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PlanetScope NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+</pre></div>
+
+<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_21_0.png" /></p>
+<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_21_1.png" /></p>
+<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_21_2.png" /></p>
+<p>Interestingly, it appears the square field which pops out in the difference image is less differentiated from the surrounding fields in the Landsat scene than in the PlanetScope scene. Since both scenes were collected on the same day, this is likely due to a different in the spectral responses of the NIR bands for the two sensors combined with the crop type of that field. The center wavelength of the NIR response for the PlanetScope sensor is 825nm, while it is <a href="https://landsat.gsfc.nasa.gov/preliminary-spectral-response-of-the-operational-land-imager-in-band-band-average-relative-spectral-response/">865nm for the Landsat sensor</a>. This shows that an analysis utilizing both Landsat8 and PlanetScope scenes may be able to better differentiate crop types. There is great potential in combining scenes from multiple sensors for analysis.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../getting-images-ee/" title="Getting Images into Google Earth Engine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting Images into Google Earth Engine
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Inspecting Satellite Imagery/" title="Inspecting Satellite Imagery" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Inspecting Satellite Imagery
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 - 2019 Samapriya Roy
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/samapriya" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://medium.com/@samapriyaroy" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/samapriyaroy" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/in/samapriya" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","None","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
