@@ -879,7 +879,7 @@
                 
                 <h2 id="comparing-landsat-and-planetscope-scenes">Comparing Landsat and PlanetScope Scenes<a class="headerlink" href="#comparing-landsat-and-planetscope-scenes" title="Permanent link">&para;</a></h2>
 <p>A common and powerful workflow for analysis is comparing or combining information from multiple sources. This tutorial demonstrates comparing a set of Landsat and PlanetScope scenes.</p>
-<p>In this tutorial, <a href="/files/landsat-ps-comparison.ipynb">and the notebook</a> we download scenes from the two sensors taken on the same day at the same place, visualize them, resample the Landsat scene to match the pixel resolution and locations of the PlanetScope scene, and perform pixel-by-pixel comparison of their near-infrared (NIR) bands.</p>
+<p>In this tutorial, <a href="../../files/landsat-ps-comparison.ipynb">and the notebook</a> we download scenes from the two sensors taken on the same day at the same place, visualize them, resample the Landsat scene to match the pixel resolution and locations of the PlanetScope scene, and perform pixel-by-pixel comparison of their near-infrared (NIR) bands.</p>
 <p>Our comparison of the NIR bands is identification of the difference between the scaled NIR bands. We find that most differences between the NIR bands are at high-resolution features and are due to the lower resolution of the Landsat scene. However, we also find a few fields show noticeable difference in the NIR bands. We theorize that these differences may be due to the different spectral responses of the two sensors and the fields containing different crop types than the surrounding fields. These results suggest that an analysis utilizing both Landsat8 and PlanetScope scenes may be able to better differentiate crop types than just using one sensor.</p>
 <p>Ideas for extending beyond this notebook:
 1. Mask the scenes using the PlanetScope Unusable Data Mask and Landsat Quality Assurance bands
@@ -898,7 +898,7 @@
 </pre></div>
 
 <h2 id="download-scenes">Download Scenes<a class="headerlink" href="#download-scenes" title="Permanent link">&para;</a></h2>
-<p>In the <a href="/crossovers/ps_l8_crossovers.ipynb">crossovers notebook</a>, we identified many Landsat/PlanetScope crossovers within the same day that occured between January and August 2017. From that list, we are going to download the following set of scenes:
+<p>In the <a href="../../crossovers/ps_l8_crossovers.ipynb">crossovers notebook</a>, we identified many Landsat/PlanetScope crossovers within the same day that occured between January and August 2017. From that list, we are going to download the following set of scenes:
  - <a href="https://api.planet.com/data/v1/item-types/PSOrthoTile/items/644787_1056721_2017-07-25_0f52/thumb">PSOrthoTile 644787_1056721_2017-07-25_0f52</a>
  - <a href="https://api.planet.com/data/v1/item-types/Landsat8L1G/items/LC80430332017206LGN00/thumb">Landsat8L1G LC80430332017206LGN00</a></p>
 <table>
@@ -910,8 +910,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="644787_1056721_2017-07-25_0f52" src="/images/644787_1056721_2017-07-25_0f52_thumb.png" title="644787_1056721_2017-07-25_0f52" /></td>
-<td align="center"><img alt="LC80430332017206LGN00" src="/images/LC80430332017206LGN00_thumb.png" title="LC80430332017206LGN00" /></td>
+<td align="center"><img alt="644787_1056721_2017-07-25_0f52" src="../../images/644787_1056721_2017-07-25_0f52_thumb.png" title="644787_1056721_2017-07-25_0f52" /></td>
+<td align="center"><img alt="LC80430332017206LGN00" src="../../images/LC80430332017206LGN00_thumb.png" title="LC80430332017206LGN00" /></td>
 </tr>
 </tbody>
 </table>
@@ -940,7 +940,7 @@
 <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">)</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span>/data/644787_1056721_2017-07-25_0f52_BGRN_Analytic.tif
+<div class="codehilite"><pre><span></span>../data/644787_1056721_2017-07-25_0f52_BGRN_Analytic.tif
 </pre></div>
 
 
@@ -996,7 +996,7 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">l8_nir_orig_filename</span><span class="p">)</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span>/data/LC80430332017206LGN00_analytic_b5.tif
+<div class="codehilite"><pre><span></span>../data/LC80430332017206LGN00_analytic_b5.tif
 </pre></div>
 
 
@@ -1075,7 +1075,7 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">)</span>
 </pre></div>
 
-<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_14_0.png" /></p>
+<p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_14_0.png" /></p>
 <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">load_pl_nir</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
         <span class="n">band_num</span> <span class="o">=</span> <span class="mi">3</span>
@@ -1088,7 +1088,7 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">pl_nir_band</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PSOrthotile NIR&#39;</span><span class="p">)</span>
 </pre></div>
 
-<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_15_0.png" /></p>
+<p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_15_0.png" /></p>
 <h2 id="compare-nir-bands">Compare NIR Bands<a class="headerlink" href="#compare-nir-bands" title="Permanent link">&para;</a></h2>
 <p>In this section we look at the difference in response between the NIR bands of the two sensors.</p>
 <p>The difference is calculated as the absolute value of the subtraction of one normalized NIR band from the other normalized NIR band.</p>
@@ -1111,7 +1111,7 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <div class="codehilite"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">diff_band</span><span class="p">])</span>
 </pre></div>
 
-<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_19_0.png" /></p>
+<p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_19_0.png" /></p>
 <p>In general, the major differences between the NIR bands occur at high-resolution features (edges of fields, roads, and populated areas) and are caused by the lower resolution of the Landsat8 sensor. However, there are a few larger regions, which appear to be fields, that show some difference between the NIR bands.</p>
 <p>Lets zoom into one such region, the square field located just right of center of the image.</p>
 <div class="codehilite"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">:</span><span class="mi">5000</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3500</span><span class="p">:</span><span class="mi">5500</span><span class="p">])</span> <span class="c1"># create a (rows, columns) numpy slice for indexing the array</span>
@@ -1121,9 +1121,9 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 </pre></div>
 
-<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_21_0.png" /></p>
-<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_21_1.png" /></p>
-<p><img alt="png" src="/landsat-ps-comparison_files/landsat-ps-comparison_21_2.png" /></p>
+<p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_21_0.png" /></p>
+<p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_21_1.png" /></p>
+<p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_21_2.png" /></p>
 <p>Interestingly, it appears the square field which pops out in the difference image is less differentiated from the surrounding fields in the Landsat scene than in the PlanetScope scene. Since both scenes were collected on the same day, this is likely due to a different in the spectral responses of the NIR bands for the two sensors combined with the crop type of that field. The center wavelength of the NIR response for the PlanetScope sensor is 825nm, while it is <a href="https://landsat.gsfc.nasa.gov/preliminary-spectral-response-of-the-operational-land-imager-in-band-band-average-relative-spectral-response/">865nm for the Landsat sensor</a>. This shows that an analysis utilizing both Landsat8 and PlanetScope scenes may be able to better differentiate crop types. There is great potential in combining scenes from multiple sensors for analysis.</p>
                 
                   
