@@ -13,7 +13,7 @@
         <meta name="description" content="Satellite data for global development">
       
       
-        <link rel="canonical" href="https://samapriya.github.io/projects/open-impact/projects/images/">
+        <link rel="canonical" href="https://samapriya.github.io/projects/open-impact/projects/img/">
       
       
         <meta name="author" content="Samapriya Roy">
@@ -725,12 +725,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/edit/master/docs/projects/images.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/edit/master/docs/projects/img.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="images-in-earth-engine">Images in Earth Engine<a class="headerlink" href="#images-in-earth-engine" title="Permanent link">&para;</a></h1>
 <p>In the GEE environment images are stored in Cloud Optimized Geospatial tiles instead of a single image which allows for running an analysis this scale. This means that though the input imagery comes in know formats such as geotiff , MrSid and img these datasets post ingestion into GEE are converted into tiles that are used for at scale analysis. All images that are ingested into either GEE(s) Raster Catalog or your own personal folder and stored in folder or collections of images as you would expect to see when doing deep time stack analysis.</p>
-<p><center><img alt="Imagery" src="/images/ee_imagery.gif" /></center></p>
+<p><center><img alt="Imagery" src="../../images/ee_imagery.gif" /></center></p>
 <p>These images have defined data type,scales and projections along with some default properties such as an index and ID among other system properties. So we can query these properties, print them and add them</p>
 <div class="codehilite"><pre><span></span><span class="c1">//Setting up a Geometry</span>
 <span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;users/io-work-1/vector/openca&#39;</span><span class="p">)</span>

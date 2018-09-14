@@ -455,7 +455,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../images/" title="Images" class="md-nav__link">
+    <a href="../img/" title="Images" class="md-nav__link">
       Images
     </a>
   </li>
@@ -731,7 +731,7 @@
                 <h1 id="functions-in-earth-engine-ndvi">Functions in Earth Engine: NDVI<a class="headerlink" href="#functions-in-earth-engine-ndvi" title="Permanent link">&para;</a></h1>
 <p>While single image operations are direct and can be applied to the imagery for a one to one result. Applying any kind of analysis on a single image means you have to call the image and run the analysis which is quick and easy. To be able to turn this same into a function that you can iterate over an entire collection requires us to convert a single analysis to a function. A function is then mapped or run over an entire collection. To avoid any errors make sure that the collection images are consistent and have same name and number of band and characteristics.</p>
 <p>For this setup we look at how we added PlanetScope Surface Reflectance data earlier , filtering it using date and further using Cloud cover for the scene. The next step we are building an function to calculate Normalized Difference Vegetation Index (NDVI) over the entire collection which takes an image collection and iteratively passes an image to the function. The resultant structure is also an image collection where we are returning a single band which is the NDVI. Note that we also renamed the band to NDVI since they are not autorenamed</p>
-<p><center><img alt="ndvi" src="/images/ee_ndvi.jpg" /></center></p>
+<p><center><img alt="ndvi" src="../../images/ee_ndvi.jpg" /></center></p>
 <p>You can access the <a href="https://code.earthengine.google.com/38ef6e5e3a667bc9d2ca81e93ef6f335">script here</a> or copy and paste from below</p>
 <div class="codehilite"><pre><span></span><span class="c1">//Add an AOI</span>
 <span class="kd">var</span> <span class="nx">aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;users/io-work-1/vector/subset&quot;</span><span class="p">)</span>

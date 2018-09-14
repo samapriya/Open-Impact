@@ -455,7 +455,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../images/" title="Images" class="md-nav__link">
+    <a href="../img/" title="Images" class="md-nav__link">
       Images
     </a>
   </li>
@@ -730,7 +730,7 @@
                 
                 <h1 id="monthly-cloud-free-composites-in-earth-engine">Monthly Cloud Free Composites in Earth Engine<a class="headerlink" href="#monthly-cloud-free-composites-in-earth-engine" title="Permanent link">&para;</a></h1>
 <p>One of the most sought after functions in Earth Engine is the possibility of using deep time stack imagery to create cloud free composites. One of the simplest way of thinking about this is to use reducers that we talked about earlier, where we look at an entire stack of pixels and choose the median value of the distribution of pixel across stack and we end up getting a cloud free composite over the given time period. Depending on the number of images, the actual number of cloud free images in the overall stack your results may need more fine tune adjustments.</p>
-<p><center><img alt="composite" src="/images/ee_composite.gif" /></center>
+<p><center><img alt="composite" src="images/ee_composite.gif" /></center>
 <center><strong>Multi Month Composite: A single month is added FCC</strong></center></p>
 <p>For this setup we look at how we added PlanetScope Surface Reflectance data earlier , filtering it using date and Cloud cover for the scene. The next step we are building an function to calculate monthly composites from June to August 2018. Note that this is another way of creating a function where we have inserted the map function and the collection inside the function so it can be run directly. We might be interested in sorting these collections using month and hence we set the month as a metadata for each image in the cloud free composite.</p>
 <p>You can get the <a href="https://code.earthengine.google.com/e659b9d38168106a9a3bcc64867afb1f">complete code here</a> or copy and paste it from below</p>
