@@ -1059,7 +1059,7 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 
 <h2 id="load-and-visualize-nir-bands">Load and Visualize NIR Bands<a class="headerlink" href="#load-and-visualize-nir-bands" title="Permanent link">&para;</a></h2>
 <p>Before moving on to comparing the NIR bands, we load the NIR bands from each scene and visualize the bands.</p>
-<p>Instead of including a huge chunk of code for visualizing the NIR band, we put that code in a local script (<a href="/files/visual.py">visual.py</a>) and import here.</p>
+<p>Instead of including a huge chunk of code for visualizing the NIR band, we put that code in a local script (<a href="../../files/visual.py">visual.py</a>) and import here.</p>
 <p>Ideally, we would use the PlanetScope Unusable Data Mask (UDM) and Landsat Quality Assurance (QA) bands to create the pixel masks. In the interest of keeping this tutorial focused, we perform a simple and brute-force masking where we mask pixels that are equal to the blackfill NoData value, 0.</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span>
 </pre></div>

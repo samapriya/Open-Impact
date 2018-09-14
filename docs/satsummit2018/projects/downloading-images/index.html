@@ -829,7 +829,7 @@
 <p>You can download images from Planet using a couple of methods, including but not limited to Planet Explorer or using a client to make requests to the Data API and downloading imagery.</p>
 <h3 id="planet-explorer"><strong>Planet Explorer</strong><a class="headerlink" href="#planet-explorer" title="Permanent link">&para;</a></h3>
 <p>Planet Explorer is probably one of the most useful and beloved interface to interact with and download Planet Labs satellite imagery. Not only does it allow you to filter your images to specific sensors but it also allows you to filter by cloud cover among other things. A neat little trick in Planet Explorer is that once the images are filtered if you want to download multiple images at once in an order you can hold down the control key(if using a windows machine) and click on multiple sets of imagery adding them to the same order.</p>
-<p><img alt="Using the Planet Explorer" src="/images/downloading_images.gif" /></p>
+<p><img alt="Using the Planet Explorer" src="../../images/downloading_images.gif" /></p>
 <p><center><em>Steps to get satellite imagery from Planet Explorer</em></center></p>
 <p>Once the images have been ordered sit back and relax as the order notification that your delivery is ready to be picked up will be emailed to you.</p>
 <p>To interact with the <strong>Data API</strong> and batch download imagery there is <a href="https://www.planet.com/docs/">host of Planet Platform documentation</a> that teach you how to do that step by step.</p>
@@ -853,7 +853,7 @@
 <div class="codehilite"><pre><span></span>python saved_search_download.py &quot;search_name&quot; &quot;analytic&quot; &quot;C:\planet_demo&quot;
 </pre></div>
 
-<p><img alt="Using the Saved Search Tool" src="/images/saved_searches.gif" /></p>
+<p><img alt="Using the Saved Search Tool" src="../../images/saved_searches.gif" /></p>
 <p>I added the functionality to use Planet's own async downlaoder to download based on a geometry</p>
 <p>A setup using geojson needs to include other filters too and a typical setup would be</p>
 <p><code>ppipe dasync --infile &quot;C:\Users\johndoe\geometry.geojson&quot; --item &quot;PSScene4Band&quot; --asset &quot;analytic&quot; --local &quot;C:\planet&quot; --start &quot;2018-06-01&quot; --end &quot;2018-08-01&quot; --cmin 0 --cmax 0.4</code></p>
