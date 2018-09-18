@@ -879,7 +879,7 @@
                 
                 <h2 id="comparing-landsat-and-planetscope-scenes">Comparing Landsat and PlanetScope Scenes<a class="headerlink" href="#comparing-landsat-and-planetscope-scenes" title="Permanent link">&para;</a></h2>
 <p>A common and powerful workflow for analysis is comparing or combining information from multiple sources. This tutorial demonstrates comparing a set of Landsat and PlanetScope scenes.</p>
-<p>In this tutorial, <a href="../../files/landsat-ps-comparison.ipynb">and the notebook</a> we download scenes from the two sensors taken on the same day at the same place, visualize them, resample the Landsat scene to match the pixel resolution and locations of the PlanetScope scene, and perform pixel-by-pixel comparison of their near-infrared (NIR) bands.</p>
+<p>In this tutorial, we download scenes from the two sensors taken on the same day at the same place, visualize them, resample the Landsat scene to match the pixel resolution and locations of the PlanetScope scene, and perform pixel-by-pixel comparison of their near-infrared (NIR) bands.</p>
 <p>Our comparison of the NIR bands is identification of the difference between the scaled NIR bands. We find that most differences between the NIR bands are at high-resolution features and are due to the lower resolution of the Landsat scene. However, we also find a few fields show noticeable difference in the NIR bands. We theorize that these differences may be due to the different spectral responses of the two sensors and the fields containing different crop types than the surrounding fields. These results suggest that an analysis utilizing both Landsat8 and PlanetScope scenes may be able to better differentiate crop types than just using one sensor.</p>
 <p>Ideas for extending beyond this notebook:
 1. Mask the scenes using the PlanetScope Unusable Data Mask and Landsat Quality Assurance bands
@@ -888,10 +888,12 @@
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">,</span> <span class="n">CalledProcessError</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">urllib</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">rasterio.enums</span>
+<span class="kn">import</span> <span class="nn">rasterio.vrt</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
@@ -920,21 +922,23 @@
 <p>To download the scenes, we use the planet CLI because it handles activating, waiting for activation, and downloading the file.</p>
 <p>We will save the scenes in the <code>data</code> folder. This folder isn't tracked by git so the downloaded image file will not bloat our git repository.</p>
 <h3 id="download-planetscope-orthotile-scene">Download PlanetScope Orthotile Scene<a class="headerlink" href="#download-planetscope-orthotile-scene" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="c1"># create the data folder if it doesn&#39;t exist</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Create a working directory if it does not already exist.</span>
 <span class="n">data_folder</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">):</span> <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">)</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># first test if scene file exists, if not, use planet cli to download image</span>
-<span class="c1"># note that this assumes a bash shell, available in unix-based operating systems</span>
+<div class="codehilite"><pre><span></span><span class="c1"># First test if scene file exists, if not, use the Planet commandline tool to download the image.</span>
+<span class="c1"># This command assumes a bash shell, available in Unix-based operating systems.</span>
 <span class="err">!</span><span class="n">test</span> <span class="o">-</span><span class="n">f</span> <span class="n">data</span><span class="o">/</span><span class="mi">644787</span><span class="n">_1056721_2017</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">25</span><span class="n">_0f52_BGRN_Analytic</span><span class="o">.</span><span class="n">tif</span> <span class="o">||</span> \
-    <span class="n">planet</span> <span class="n">data</span> <span class="n">download</span> <span class="o">--</span><span class="n">item</span><span class="o">-</span><span class="nb">type</span> <span class="n">PSOrthoTile</span> \
-                      <span class="o">--</span><span class="n">asset</span><span class="o">-</span><span class="nb">type</span> <span class="n">analytic</span> \
-                      <span class="o">--</span><span class="n">string</span><span class="o">-</span><span class="ow">in</span> <span class="nb">id</span> <span class="mi">644787</span><span class="n">_1056721_2017</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">25</span><span class="n">_0f52</span> \
-                      <span class="o">--</span><span class="n">dest</span> <span class="n">data</span>
+    <span class="n">planet</span> <span class="n">data</span> <span class="n">download</span> \
+        <span class="o">--</span><span class="n">item</span><span class="o">-</span><span class="nb">type</span> <span class="n">PSOrthoTile</span> \
+        <span class="o">--</span><span class="n">asset</span><span class="o">-</span><span class="nb">type</span> <span class="n">analytic</span> \
+        <span class="o">--</span><span class="n">string</span><span class="o">-</span><span class="ow">in</span> <span class="nb">id</span> <span class="mi">644787</span><span class="n">_1056721_2017</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">25</span><span class="n">_0f52</span> \
+        <span class="o">--</span><span class="n">dest</span> <span class="n">data</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># store the image filename for processing and make sure the file exists</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Store the image filename for processing and make sure the file exists.</span>
 <span class="n">pl_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;644787_1056721_2017-07-25_0f52_BGRN_Analytic.tif&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">)</span>
@@ -948,11 +952,13 @@
 <p>Landsat is distributed with each asset as an individual band. Band 5 is the NIR band. Since we only plan on using the NIR band, we will download just that asset.</p>
 <p>NOTE: The command below should work, but currently there is a bug in the planet CLI.
 Until that is fixed, use the curl command to download the asset from the endpoint directly.</p>
-<div class="codehilite"><pre><span></span><span class="c1"># !planet data download --item-type Landsat8L1G \</span>
-<span class="c1">#                       --asset-type analytic_b5 \</span>
-<span class="c1">#                       --string-in id LC80430332017206LGN00 \</span>
-<span class="c1">#                       --dest data</span>
-<span class="c1"># !ls -l --block-size=M data</span>
+<div class="codehilite"><pre><span></span><span class="c1"># !planet data download \</span>
+<span class="c1">#     --item-type Landsat8L1G \</span>
+<span class="c1">#     --asset-type analytic_b5 \</span>
+<span class="c1">#     --string-in id LC80430332017206LGN00 \</span>
+<span class="c1">#     --dest data/</span>
+
+<span class="c1"># !ls -l --block-size=M data/</span>
 </pre></div>
 
 <div class="codehilite"><pre><span></span><span class="c1"># The long way of downloading an asset. Doesn&#39;t use the planet CLI</span>
@@ -1004,58 +1010,45 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <p>For pixel-by-pixel comparison of the Landsat and Planet scenes, the two scenes must have the same extents, the pixels must be the same size, and the pixels must exactly overlap each other. This can all be achieved by warping one scene to the other scene. We warp the Landsat scene to the Planet scene because the Planet scene is much higher resolution than the Landsat scene and we want to use the highest resolution possible for our comparison.</p>
 <p>The GDAL command-line interface, specifically <a href="http://www.gdal.org/gdalwarp.html">gdalwarp</a>, is the easiest way to warp one image to another image.</p>
 <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">prepare_l8_band</span><span class="p">(</span><span class="n">band_filename</span><span class="p">,</span> <span class="n">dst_filename</span><span class="p">,</span> <span class="n">out_filename</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Project, crop, and resample landsat 8 band to match dst_filename image.&#39;&#39;&#39;</span>
 
-    <span class="c1"># we use &#39;cubic&#39; method for interpolation because band represents continuous data</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;cubic&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Project, crop, and resample landsat 8 band to match dst_filename image.&quot;&quot;&quot;</span>
 
-    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">band_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dst_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
-            <span class="c1"># crop</span>
-            <span class="n">crop_options</span> <span class="o">=</span> <span class="n">_gdalwarp_crop_options</span><span class="p">(</span><span class="n">dst</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dst</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="c1"># Open the Landsat8 band file.</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">band_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
 
-            <span class="c1"># resample</span>
-            <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">dst</span><span class="o">.</span><span class="n">shape</span>
-            <span class="n">resample_options</span> <span class="o">=</span> <span class="n">_gdalwarp_resample_options</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">method</span><span class="p">)</span>
+        <span class="c1"># Open the Planet image to use as a template.</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dst_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">pl</span><span class="p">:</span>
 
-            <span class="n">options</span> <span class="o">=</span> <span class="n">crop_options</span> <span class="o">+</span> <span class="n">resample_options</span>
+            <span class="c1"># A Virtual Raster (VRT) allows for describing raster transformations and delaying computation</span>
+            <span class="c1"># until data is accessed.  The WarpedVRT() class describes how to warp a dataset, but the</span>
+            <span class="c1"># reprojection calculations are not transformed, and they are only transformed</span>
 
-            <span class="c1"># run gdalwarp</span>
-            <span class="n">_gdalwarp</span><span class="p">(</span><span class="n">band_filename</span><span class="p">,</span> <span class="n">out_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+            <span class="c1"># These parameters define a target image in the same coordinate reference system as the</span>
+            <span class="c1"># PlanetScope image and the same number of rows and columns.</span>
+            <span class="n">warp_params</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;crs&#39;</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                <span class="s1">&#39;transform&#39;</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
+                <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">height</span>
+            <span class="p">}</span>
+            <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">vrt</span><span class="o">.</span><span class="n">WarpedVRT</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="o">**</span><span class="n">warp_params</span><span class="p">)</span> <span class="k">as</span> <span class="n">vrt</span><span class="p">:</span>
 
-<span class="k">def</span> <span class="nf">_gdalwarp_crop_options</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">crs</span><span class="p">):</span>
-    <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-te&#39;</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">]</span>
+                <span class="c1"># Using the PlanetScope image as a reference, create an output.  The PlanetScope image</span>
+                <span class="c1"># has 4 bands but the Landsat 8 image only has 1.  Update the output image profile with</span>
+                <span class="c1"># this information.</span>
+                <span class="n">out_profile</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">out_profile</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vrt</span><span class="o">.</span><span class="n">count</span>
+                <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">out_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">out_profile</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+                    <span class="c1"># This &#39;vrt.read()&#39; triggers the warp calculations.</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">vrt</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">_gdalwarp_resample_options</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">technique</span><span class="p">):</span>
-    <span class="c1"># for technique options, see: http://www.gdal.org/gdalwarp.html</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;-ts&#39;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">technique</span><span class="p">]</span>
+                    <span class="c1"># Write data to output file.</span>
+                    <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">_gdalwarp</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
-    <span class="n">commands</span> <span class="o">=</span> <span class="n">_gdalwarp_commands</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-
-    <span class="c1"># print error if one is encountered</span>
-    <span class="c1"># https://stackoverflow.com/questions/29580663/save-error-message-of-subprocess-command</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">commands</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">_gdalwarp_commands</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
-    <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gdalwarp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">options</span> <span class="o">+</span> \
-               <span class="p">[</span><span class="s1">&#39;-overwrite&#39;</span><span class="p">,</span>
-                <span class="n">input_filename</span><span class="p">,</span>
-                <span class="n">output_filename</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">commands</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">commands</span>
 
 <span class="n">l8_nir_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;LC80430332017206LGN00_analytic_b5_warped.tif&#39;</span><span class="p">)</span>
 <span class="n">prepare_l8_band</span><span class="p">(</span><span class="n">l8_nir_orig_filename</span><span class="p">,</span> <span class="n">pl_filename</span><span class="p">,</span> <span class="n">l8_nir_filename</span><span class="p">)</span>
 </pre></div>
-
-<div class="codehilite"><pre><span></span>gdalwarp -te 643500.0 4223500.0 668500.0 4248500.0 -ts 8000 8000 -r cubic -overwrite data/LC80430332017206LGN00_analytic_b5.tif data/LC80430332017206LGN00_analytic_b5_warped.tif
-</pre></div>
-
 
 <h2 id="load-and-visualize-nir-bands">Load and Visualize NIR Bands<a class="headerlink" href="#load-and-visualize-nir-bands" title="Permanent link">&para;</a></h2>
 <p>Before moving on to comparing the NIR bands, we load the NIR bands from each scene and visualize the bands.</p>
@@ -1064,28 +1057,28 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">load_l8_nir</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">l8_nir_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
-        <span class="n">nir_band</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="c1"># mask wherever the pixel value is the NoData value, 0</span>
-        <span class="n">mask</span> <span class="o">=</span> <span class="n">nir_band</span> <span class="o">==</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nir_band</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Display Landsat 8 NIR band.</span>
 
-<span class="n">l8_nir_band</span> <span class="o">=</span> <span class="n">load_l8_nir</span><span class="p">()</span>
-<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">l8_nir_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Generate a masked array with a mask representing 0 pixels.</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">data</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">l8_nir_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">l8_nir_band</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">)</span>
 </pre></div>
 
 <p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_14_0.png" /></p>
-<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">load_pl_nir</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
-        <span class="n">band_num</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="n">nir_band</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="n">band_num</span><span class="p">]</span>
-        <span class="n">mask</span> <span class="o">=</span> <span class="n">nir_band</span> <span class="o">==</span> <span class="mi">0</span>
-<span class="c1">#         mask = src.read_masks()[band_num] == 0</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nir_band</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Display PlanetScope NIR band.</span>
 
-<span class="n">pl_nir_band</span> <span class="o">=</span> <span class="n">load_pl_nir</span><span class="p">()</span>
-<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">pl_nir_band</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PSOrthotile NIR&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pl_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">data</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">pl_nir_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">pl_nir_band</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PSOrthotile NIR&#39;</span><span class="p">)</span>
 </pre></div>
 
 <p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_15_0.png" /></p>
@@ -1093,22 +1086,24 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <p>In this section we look at the difference in response between the NIR bands of the two sensors.</p>
 <p>The difference is calculated as the absolute value of the subtraction of one normalized NIR band from the other normalized NIR band.</p>
 <p>Note: Landsat8 is corrected to reflectance and PlanetScope is corrected to radiance. The conversion between reflectance and radiance is achieved by scaling the entire band. In this comparison, we normalize the two NIR bands to 0-1 anyway, so the radiance/reflectance difference doesn't affect us.</p>
-<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">old_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">new_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_max</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">old_min</span> <span class="o">=</span> <span class="n">old_min</span> <span class="k">if</span> <span class="n">old_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="n">old_max</span> <span class="o">=</span> <span class="n">old_max</span> <span class="k">if</span> <span class="n">old_max</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">rescale</span><span class="p">(</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">old_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">new_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_max</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">old_min</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">old_min</span> <span class="o">=</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">old_max</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">old_max</span> <span class="o">=</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
     <span class="c1"># https://en.wikipedia.org/wiki/Normalization_(image_processing)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">ndarray</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_max</span> <span class="o">-</span> <span class="n">new_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">old_max</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">new_min</span>
 </pre></div>
 
 <div class="codehilite"><pre><span></span><span class="c1"># Scale the bands so that the maximum value is 1</span>
-<span class="n">diff_band</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">l8_nir_band</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">normalize</span><span class="p">(</span><span class="n">pl_nir_band</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">diff_band</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">rescale</span><span class="p">(</span><span class="n">l8_nir_band</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">rescale</span><span class="p">(</span><span class="n">pl_nir_band</span><span class="p">,</span> <span class="n">old_min</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
-<span class="c1"># if a pixel is masked in either of the NIR bands, mask it in the difference band</span>
-<span class="n">diff_band</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">pl_nir_band</span><span class="o">.</span><span class="n">mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Mask a pixel in the difference band if it is masked in either the Landsat 8 or PlanetScope data.</span>
+<span class="n">diff_band</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">l8_nir_band</span><span class="o">.</span><span class="n">mask</span> <span class="o">|</span> <span class="n">pl_nir_band</span><span class="o">.</span><span class="n">mask</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">diff_band</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">diff_band</span><span class="p">)</span>
 </pre></div>
 
 <p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_19_0.png" /></p>
@@ -1116,9 +1111,9 @@ Until that is fixed, use the curl command to download the asset from the endpoin
 <p>Lets zoom into one such region, the square field located just right of center of the image.</p>
 <div class="codehilite"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3000</span><span class="p">:</span><span class="mi">5000</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">s_</span><span class="p">[</span><span class="mi">3500</span><span class="p">:</span><span class="mi">5500</span><span class="p">])</span> <span class="c1"># create a (rows, columns) numpy slice for indexing the array</span>
 <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">diff_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;NIR Difference&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">pl_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PlanetScope NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">([</span><span class="n">l8_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">]],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">diff_band</span><span class="p">[</span><span class="n">region</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;NIR Difference&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">pl_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PlanetScope NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">plot_image</span><span class="p">(</span><span class="n">l8_nir_band</span><span class="p">[</span><span class="n">region</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Landsat8 NIR&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 </pre></div>
 
 <p><img alt="png" src="../../landsat-ps-comparison_files/landsat-ps-comparison_21_0.png" /></p>

@@ -773,60 +773,64 @@
                 
                 <h1 id="visualizing-satellite-imagery-with-matplotlib">Visualizing Satellite Imagery with Matplotlib<a class="headerlink" href="#visualizing-satellite-imagery-with-matplotlib" title="Permanent link">&para;</a></h1>
 <h2 id="taking-a-closer-look-at-satellite-data-with-python">Taking a closer look at satellite data with Python<a class="headerlink" href="#taking-a-closer-look-at-satellite-data-with-python" title="Permanent link">&para;</a></h2>
-<p>In the <a href="../../files/Inspecting Satellite Imagery.ipynb">Inspecting Satellite Imagery Notebook</a>, we learned how to use <code>rasterio</code> to read and manipulate satellite data. There we also learned that, since satellite images are really grids of pixel-values, a satellite image can be interpreted as a multidimensional array of values. You can <a href="../../files/Visualizing Satellite Imagery.ipynb">get the notebook here</a></p>
-<p>You may already be familiar with the Python library <code>matplotlib</code>: here, we're going to briefly use that toolset to visually plot satellite data that has been read into a numpy array using <code>rasterio</code>.</p>
+<p>In the <a href="../../files/Inspecting Satellite Imagery.ipynb">Inspecting Satellite Imagery Notebook</a>, we learned how to use <a href="https://rasterio.readthedocs.io/en/stable/">Rasterio</a> to read and manipulate satellite data. There we also learned that, since satellite images are really grids of pixel-values, a satellite image can be interpreted as a multidimensional array of values.You can <a href="../../files/Visualizing Satellite Imagery.ipynb">get the notebook here</a></p>
+<p>You may already be familiar with the Python library <a href="https://matplotlib.org/">matplotlib</a>: here, we're going to briefly use that toolset to visually plot satellite data that has been read into a numpy array using Rasterio.</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="c1"># feel free to replace &#39;example&#39; with your own GeoTIFF:</span>
-<span class="c1"># note that this Notebook will assume we&#39;re working with PlanetScope 4-band imagery</span>
+<span class="c1"># This notebook explores a single 4 band (blue, green, red, NIR) PlanetScope scene in a UTM projection.</span>
 <span class="n">image_file</span> <span class="o">=</span> <span class="s2">&quot;example.tif&quot;</span>
 
-<span class="c1"># use rasterio to read in the satellite image</span>
+<span class="c1"># Use Rasterio to open the image.</span>
 <span class="n">satdat</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># load the 4 bands into 2d arrays - recall that we previously learned PlanetScope band order is BGRN</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Load the 4 bands into 2d arrays - recall that we previously learned PlanetScope band order is BGRN.</span>
 <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># use imshow to load the blue band</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Use imshow to load the blue band.</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
-<span class="c1"># Display the results</span>
+<span class="c1"># Display the results.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># now let&#39;s plot the green band, and add a color map</span>
+<p>![png](../images/Visualizing Satellite Imagery_3_0.png)</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Plot the green band using a non-default color ramp.</span>
 <span class="c1"># https://matplotlib.org/users/colormaps.html</span>
-
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s1">&#39;gist_earth&#39;</span><span class="p">)</span>
 
-<span class="c1"># Display the results</span>
+<span class="c1"># Display the results.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># add a colorbar, and plot the red band</span>
+<p>![png](../images/Visualizing Satellite Imagery_4_0.png)</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Plot the red band and add a color bar.</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s1">&#39;inferno&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 
-<span class="c1"># Display the results</span>
+<span class="c1"># Display the results.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># finally, we&#39;ll plot the NIR band and since axis labels are useless here, let&#39;s turn them off</span>
-
+<p>![png](../images/Visualizing Satellite Imagery_5_0.png)</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Finally, plot the NIR band.</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s1">&#39;winter&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="c1"># Since the axis labels are useless here, let&#39;s turn them off.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
-<span class="c1"># Display the results</span>
+<span class="c1"># Display the results.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+<p>![png](../images/Visualizing Satellite Imagery_6_0.png)</p>
                 
                   
                 

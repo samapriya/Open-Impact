@@ -815,12 +815,16 @@
                 
                 <h1 id="inspecting-satellite-imagery-using-rasterio">Inspecting Satellite Imagery using Rasterio<a class="headerlink" href="#inspecting-satellite-imagery-using-rasterio" title="Permanent link">&para;</a></h1>
 <h2 id="a-first-look-at-satellite-data-with-python">A first look at satellite data with Python<a class="headerlink" href="#a-first-look-at-satellite-data-with-python" title="Permanent link">&para;</a></h2>
-<p>At this point, you will have learned different ways of searching for, filtering, and downloading satellite imagery. Now let's use one of these acquired datasets and dig into it a bit with Python. You can <a href="../../files/Inspecting Satellite Imagery.ipynb">get the notebook here</a></p>
-<p>Here we're going to use a Python library called <code>rasterio</code>: you may be familiar with it already, or perhaps with the related C library, <code>GDAL</code>. If you've used <code>numpy</code> before, working with <code>rasterio</code> will feel very familiar.</p>
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<p>At this point, you will have learned different ways of searching for, filtering, and downloading satellite imagery. Now let's use one of these acquired datasets and dig into it a bit with Python.You can <a href="../../files/Inspecting Satellite Imagery.ipynb">get the notebook here</a></p>
+<p>Here we're going to use a Python library called <a href="https://rasterio.readthedocs.io/en/stable/">Rasterio</a>: you may be familiar with it already, or perhaps with the related C library, <a href="https://gdal.org/">GDAL</a>. If you've used <a href="http://www.numpy.org/">Numpy</a> before, working with <a href="https://rasterio.readthedocs.io/en/stable/">Rasterio</a> will feel very familiar.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 
-<span class="c1"># feel free to replace &#39;example&#39; with your own GeoTIFF:</span>
-<span class="c1"># note that this Notebook will assume we&#39;re working with PlanetScope 4-band imagery</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">rasterio</span>
+
+
+<span class="c1"># This notebook explores a single 4 band (blue, green, red, NIR) PlanetScope scene in a UTM projection.</span>
 <span class="n">image_file</span> <span class="o">=</span> <span class="s2">&quot;example.tif&quot;</span>
 
 <span class="n">satdat</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span>
@@ -828,118 +832,208 @@
 
 <h2 id="basic-details">Basic details<a class="headerlink" href="#basic-details" title="Permanent link">&para;</a></h2>
 <p>What can we learn about this satellite image using just Python?</p>
-<div class="codehilite"><pre><span></span><span class="c1"># Get the bounding box of this GeoTIFF</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Minimum bounding box in projected units</span>
 
-<span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span>
+<span class="k">print</span><span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
 </pre></div>
+
+<div class="codehilite"><pre><span></span>BoundingBox(left=544170.0, bottom=3759147.0, right=550146.0, top=3766416.0)
+</pre></div>
+
 
 <div class="codehilite"><pre><span></span><span class="c1"># Get dimensions, in map units (using the example GeoTIFF, that&#39;s meters)</span>
 
-<span class="n">width</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">right</span> <span class="o">-</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span>
-<span class="n">height</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">bottom</span>
+<span class="n">width_in_projected_units</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">right</span> <span class="o">-</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span>
+<span class="n">height_in_projected_units</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">bottom</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Width: {}, Height: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Width: {}, Height: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">width_in_projected_units</span><span class="p">,</span> <span class="n">height_in_projected_units</span><span class="p">))</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># Get dimensions, in pixels</span>
-
-<span class="n">px_width</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">width</span>
-<span class="n">px_height</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">height</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Width: {}, Height: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">px_width</span><span class="p">,</span> <span class="n">px_height</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span>Width: 5976.0, Height: 7269.0
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># How many meters to a pixel?</span>
 
-<span class="n">w</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="n">px_width</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="n">px_height</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Number of rows and columns.</span>
 
-<span class="n">w</span><span class="p">,</span> <span class="n">h</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Rows: {}, Columns: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">satdat</span><span class="o">.</span><span class="n">width</span><span class="p">))</span>
 </pre></div>
+
+<div class="codehilite"><pre><span></span>Rows: 2423, Columns: 1992
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1"># This dataset&#39;s projection uses meters as distance units.  What are the dimensions of a single pixel in meters?</span>
+
+<span class="n">xres</span> <span class="o">=</span> <span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">right</span> <span class="o">-</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="n">satdat</span><span class="o">.</span><span class="n">width</span>
+<span class="n">yres</span> <span class="o">=</span> <span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span> <span class="o">/</span> <span class="n">satdat</span><span class="o">.</span><span class="n">height</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">xres</span><span class="p">,</span> <span class="n">yres</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Are the pixels square: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xres</span> <span class="o">==</span> <span class="n">yres</span><span class="p">))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>3.0 3.0
+Are the pixels square: True
+</pre></div>
+
 
 <div class="codehilite"><pre><span></span><span class="c1"># Get coordinate reference system</span>
 
 <span class="n">satdat</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># Get coordinates of top-left &amp; bottom right corners</span>
+<div class="codehilite"><pre><span></span>CRS({&#39;init&#39;: &#39;epsg:32611&#39;})
+</pre></div>
 
-<span class="c1"># NOTE: how to do this depends on your Rasterio version --</span>
-<span class="c1"># if you&#39;re running against a pre-1.0 release use satdat.affine instead</span>
 
-<span class="n">topleft</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">botright</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Convert pixel coordinates to world coordinates.</span>
+
+<span class="c1"># Upper left pixel</span>
+<span class="n">row_min</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">col_min</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Lower right pixel.  Rows and columns are zero indexing.</span>
+<span class="n">row_max</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">col_max</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1"># Transform coordinates with the dataset&#39;s affine transformation.</span>
+<span class="n">topleft</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="n">row_min</span><span class="p">,</span> <span class="n">col_min</span><span class="p">)</span>
+<span class="n">botright</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="n">row_max</span><span class="p">,</span> <span class="n">col_max</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Top left corner coordinates: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">topleft</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bottom right corner coordinates: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">botright</span><span class="p">))</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># Another way of viewing most of the previous values:</span>
-<span class="c1"># Get the basic metadata of this GeoTIFF</span>
-
-<span class="n">satdat</span><span class="o">.</span><span class="n">meta</span>
+<div class="codehilite"><pre><span></span>Top left corner coordinates: (544170.0, 3766416.0)
+Bottom right corner coordinates: (551436.0, 3760443.0)
 </pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1"># All of the metadata required to create an image of the same dimensions, datatype, format, etc. is stored in</span>
+<span class="c1"># one location.</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">meta</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>{&#39;driver&#39;: &#39;GTiff&#39;, &#39;dtype&#39;: &#39;uint16&#39;, &#39;nodata&#39;: 0.0, &#39;width&#39;: 1992, &#39;height&#39;: 2423, &#39;count&#39;: 4, &#39;crs&#39;: CRS({&#39;init&#39;: &#39;epsg:32611&#39;}), &#39;transform&#39;: Affine(3.0, 0.0, 544170.0,
+       0.0, -3.0, 3766416.0)}
+</pre></div>
+
 
 <h2 id="bands">Bands<a class="headerlink" href="#bands" title="Permanent link">&para;</a></h2>
 <p>So far, we haven't done too much geospatial-raster-specific work yet. Since we know we're inspecting a multispectral satellite image, let's see what we can learn about its bands.</p>
-<div class="codehilite"><pre><span></span><span class="c1"># Get the number of bands by listing their indices</span>
+<div class="codehilite"><pre><span></span><span class="c1"># The dataset reports a band count.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
 
-<span class="n">satdat</span><span class="o">.</span><span class="n">indexes</span>
+<span class="c1"># And provides a sequence of band indexes.  These are one indexing, not zero indexing like Numpy arrays.</span>
+<span class="k">print</span><span class="p">(</span><span class="n">satdat</span><span class="o">.</span><span class="n">indexes</span><span class="p">)</span>
 </pre></div>
+
+<div class="codehilite"><pre><span></span>4
+(1, 2, 3, 4)
+</pre></div>
+
 
 <p>Because we know we're look at a PlanetScope 4-band analytic satellite image, we can define the bands by their order:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># PlanetScope 4-band band order: BGRN</span>
 
-<span class="n">blue</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">green</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">red</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">nir</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">blue</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">nir</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="c1"># or:</span>
-<span class="c1"># blue, green, red, nir = satdat.read()</span>
+<span class="c1"># Or the slightly less efficient:</span>
+<span class="c1">#    blue = satdat.read(1)</span>
+<span class="c1">#    green = satdat.read(2)</span>
+<span class="c1">#    red = satdat.read(3)</span>
+<span class="c1">#    nir = satdat.read(4)</span>
+
+<span class="c1"># Or read the entire dataset into a single 3D array:</span>
+<span class="c1">#    data = satdat.read()</span>
 </pre></div>
 
 <h2 id="pixels">Pixels<a class="headerlink" href="#pixels" title="Permanent link">&para;</a></h2>
 <p>In a raster dataset, each pixel has a value. Pixels are arranged in a grid, and pixels representing equivalent data have the same value:</p>
 <p><img alt="pixels2.png" src="../../images/pixels2.png" /></p>
-<div class="codehilite"><pre><span></span><span class="c1"># bands are stored as numpy arrays</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Bands are stored as Numpy arrays.</span>
 
 <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">blue</span><span class="p">))</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># how many dimensions would a raster have?</span>
+<div class="codehilite"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1"># How many dimensions would a single raster band have?  Two dimensions: rows and columns.</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">blue</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># take a look at the summarized array</span>
+<div class="codehilite"><pre><span></span>2
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1"># Glimpse at the band&#39;s values and datatype.</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">blue</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">blue</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 </pre></div>
 
-<div class="codehilite"><pre><span></span><span class="c1"># Output a min &amp; max pixel value in each band</span>
-
-<span class="c1"># we&#39;ll need to use numpy directly for this</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">blue</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">blue</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">green</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">green</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">red</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">red</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">nir</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">nir</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span>[[7261 7137 7087 ... 7015 6868 6891]
+ [7180 7076 7166 ... 7387 7391 7431]
+ [7424 7436 7443 ... 7497 7713 7760]
+ ...
+ [7791 7840 8139 ... 7108 7086 7267]
+ [7873 8132 8441 ... 7134 7023 7042]
+ [8320 8464 8542 ... 6893 6921 6989]]
+uint16
 </pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1"># Output a min &amp; max pixel value in each band.</span>
+
+<span class="k">for</span> <span class="n">bidx</span> <span class="ow">in</span> <span class="n">satdat</span><span class="o">.</span><span class="n">indexes</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">bidx</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Band {bidx} min {min} max {max}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bidx</span><span class="o">=</span><span class="n">bidx</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="nb">max</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+
+
+<span class="c1"># And an overall min/max for the entire dataset.</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Overall min/max: {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>Band 1 min 3493 max 22058
+Band 2 min 2905 max 17846
+Band 3 min 2048 max 19242
+Band 4 min 1132 max 13004
+Overall min/max: 1132 22058
+</pre></div>
+
 
 <div class="codehilite"><pre><span></span><span class="c1"># Let&#39;s grab the pixel 2km east and 2km south of the upper left corner</span>
 
-<span class="c1"># get the pixel</span>
-<span class="n">px_x</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="mi">2000</span>
-<span class="n">px_y</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="mi">2000</span>
+<span class="c1"># World coordinates for the desired pixel.</span>
+<span class="n">x_coord</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="mi">2000</span>
+<span class="n">y_coord</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">top</span> <span class="o">+</span> <span class="mi">2000</span>
 
-<span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">px_x</span><span class="p">,</span> <span class="n">px_y</span><span class="p">)</span>
+<span class="c1"># Convert world coordinates to pixel.  World coordinates may not transform precisely to row and column indexes,</span>
+<span class="c1"># but a Numpy array can only be indexed by integer values.  The &#39;op&#39; parameter for &#39;satdat.index()&#39; determines</span>
+<span class="c1"># how the transformed values are rounded.  In some cases any point falling within a pixel should be considered</span>
+<span class="c1"># contained, and in other cases only points falling within one portion of the pixels hould be considered contained.</span>
+<span class="c1"># The &#39;op&#39; parameter lets users make this decision on their own.  The values must still be cast to integers.</span>
+<span class="n">col</span><span class="p">,</span> <span class="n">row</span> <span class="o">=</span> <span class="n">satdat</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x_coord</span><span class="p">,</span> <span class="n">y_coord</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">)</span>
+<span class="n">col</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<span class="n">row</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
 
 <span class="c1"># Now let&#39;s look at the value of each band at this pixel</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Red: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">red</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]))</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Green: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">green</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]))</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Blue: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blue</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]))</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;NIR: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nir</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]))</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>Red: 3856
+Green: 4610
+Blue: 5097
+NIR: 3208
 </pre></div>
                 
                   
