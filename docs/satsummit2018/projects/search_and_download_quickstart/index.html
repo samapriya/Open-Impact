@@ -1,0 +1,1100 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Satellite data for global development">
+      
+      
+        <link rel="canonical" href="https://samapriya.github.io/projects/open-impact/projects/search_and_download_quickstart/">
+      
+      
+        <meta name="author" content="Samapriya Roy">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Search and Download Quickstart - Sat Summit 2018</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#7e57c2">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-purple" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#getting-started-with-the-data-api" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://samapriya.github.io/projects/open-impact/" title="Sat Summit 2018" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Sat Summit 2018
+              </span>
+              <span class="md-header-nav__topic">
+                Search and Download Quickstart
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      SatSummit 2018
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://samapriya.github.io/projects/open-impact/" title="Sat Summit 2018" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Sat Summit 2018
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      SatSummit 2018
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="ARD Analysis" class="md-nav__link">
+      ARD Analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../planet-asset/" title="Planet Imagery" class="md-nav__link">
+      Planet Imagery
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rpl/" title="Setting up your Accounts" class="md-nav__link">
+      Setting up your Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../housekeeping/" title="Basic Housekeeping and Setup" class="md-nav__link">
+      Basic Housekeeping and Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../downloading-images/" title="Downloading Images" class="md-nav__link">
+      Downloading Images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getting-images-ee/" title="Getting Images into Google Earth Engine" class="md-nav__link">
+      Getting Images into Google Earth Engine
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      The Pythonic Method
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        The Pythonic Method
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Search and Download Quickstart
+      </label>
+    
+    <a href="./" title="Search and Download Quickstart" class="md-nav__link md-nav__link--active">
+      Search and Download Quickstart
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-an-area-of-interest" title="Define an Area of Interest" class="md-nav__link">
+    Define an Area of Interest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-filters" title="Create Filters" class="md-nav__link">
+    Create Filters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searching-items-and-assets" title="Searching: Items and Assets" class="md-nav__link">
+    Searching: Items and Assets
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Inspecting Satellite Imagery/" title="Inspecting Satellite Imagery" class="md-nav__link">
+      Inspecting Satellite Imagery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Visualizing Satellite Imagery/" title="Visualizing Satellite Imagery" class="md-nav__link">
+      Visualizing Satellite Imagery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      The Earth Engine Method
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        The Earth Engine Method
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../planetee/" title="Planet & Google Earth Engine" class="md-nav__link">
+      Planet & Google Earth Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Image & Image Collections in Earth Engine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Image & Image Collections in Earth Engine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../img/" title="Images" class="md-nav__link">
+      Images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../imagecollection/" title="Image Collection" class="md-nav__link">
+      Image Collection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Functions & Reducers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Functions & Reducers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../functions/" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reducers/" title="Reducers" class="md-nav__link">
+      Reducers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      Building a complete script
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-4">
+        Building a complete script
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multimonth/" title="Monthly Cloud free composites" class="md-nav__link">
+      Monthly Cloud free composites
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../export/" title="Earth Engine exports" class="md-nav__link">
+      Earth Engine exports
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5">
+    
+    <label class="md-nav__link" for="nav-5-5">
+      Analytics in Earth Engine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-5">
+        Analytics in Earth Engine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
+      Edge Detection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../classification/" title="Skysat Image Classification" class="md-nav__link">
+      Skysat Image Classification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Extra Addon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Extra Addon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../explore/" title="PlanetScope Explorer & Exporter" class="md-nav__link">
+      PlanetScope Explorer & Exporter
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citations/" title="Citations" class="md-nav__link">
+      Citations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contact/" title="Contact Us" class="md-nav__link">
+      Contact Us
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-an-area-of-interest" title="Define an Area of Interest" class="md-nav__link">
+    Define an Area of Interest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-filters" title="Create Filters" class="md-nav__link">
+    Create Filters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searching-items-and-assets" title="Searching: Items and Assets" class="md-nav__link">
+    Searching: Items and Assets
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/satsummit2018/edit/master/docs/projects/search_and_download_quickstart.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="getting-started-with-the-data-api">Getting started with the Data API<a class="headerlink" href="#getting-started-with-the-data-api" title="Permanent link">&para;</a></h1>
+<p>Let's search &amp; download some imagery of farmland near Stockton, CA. You can <a href="../../files/search_and_download_quickstart.zip">get the notebook here</a>. Here are the steps we'll follow:</p>
+<ol>
+<li>Define an Area of Interest (AOI)</li>
+<li>Save our AOI's coordinates to GeoJSON format</li>
+<li>Create a few search filters</li>
+<li>Search for imagery using those filters</li>
+<li>Activate an image for downloading</li>
+<li>Download an image</li>
+</ol>
+<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Python 2.7 or 3+</li>
+<li>requests</li>
+<li>A <a href="https://www.planet.com/account/#/">Planet API Key</a></li>
+</ul>
+<h2 id="define-an-area-of-interest">Define an Area of Interest<a class="headerlink" href="#define-an-area-of-interest" title="Permanent link">&para;</a></h2>
+<p>An <strong>Area of Interest</strong> (or <em>AOI</em>) is how we define the geographic "window" out of which we want to get data.</p>
+<p>For the Data API, this could be a simple bounding box with four corners, or a more complex shape, as long as the definition is in <a href="http://geojson.org/">GeoJSON</a> format.</p>
+<p>For this example, let's just use a simple box. To make it easy, I'll use <a href="http://geojson.io/">geojson.io</a> to quickly draw a shape &amp; generate GeoJSON output for our box:</p>
+<p><img alt="geojsonio.png" src="../../images/geojsonio.png" /></p>
+<p>We only need the "geometry" object for our Data API request:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Stockton, CA bounding box (created via geojson.io)</span>
+<span class="n">geojson_geometry</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="o">-</span><span class="mf">121.59290313720705</span><span class="p">,</span> <span class="mf">37.93444993515032</span><span class="p">],</span>
+      <span class="p">[</span><span class="o">-</span><span class="mf">121.27017974853516</span><span class="p">,</span> <span class="mf">37.93444993515032</span><span class="p">],</span>
+      <span class="p">[</span><span class="o">-</span><span class="mf">121.27017974853516</span><span class="p">,</span> <span class="mf">38.065932950547484</span><span class="p">],</span>
+      <span class="p">[</span><span class="o">-</span><span class="mf">121.59290313720705</span><span class="p">,</span> <span class="mf">38.065932950547484</span><span class="p">],</span>
+      <span class="p">[</span><span class="o">-</span><span class="mf">121.59290313720705</span><span class="p">,</span> <span class="mf">37.93444993515032</span><span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="create-filters">Create Filters<a class="headerlink" href="#create-filters" title="Permanent link">&para;</a></h2>
+<p>Now let's set up some <strong>filters</strong> to further constrain our Data API search:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># get images that overlap with our AOI</span>
+<span class="n">geometry_filter</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;GeometryFilter&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;field_name&quot;</span><span class="p">:</span> <span class="s2">&quot;geometry&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">geojson_geometry</span>
+<span class="p">}</span>
+
+<span class="c1"># get images acquired within a date range</span>
+<span class="n">date_range_filter</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DateRangeFilter&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;field_name&quot;</span><span class="p">:</span> <span class="s2">&quot;acquired&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;gte&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-08-31T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lte&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-09-01T00:00:00.000Z&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># only get images which have &lt;50% cloud coverage</span>
+<span class="n">cloud_cover_filter</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;RangeFilter&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;field_name&quot;</span><span class="p">:</span> <span class="s2">&quot;cloud_cover&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;lte&quot;</span><span class="p">:</span> <span class="mf">0.2</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># combine our geo, date, cloud filters</span>
+<span class="n">combined_filter</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;AndFilter&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">geometry_filter</span><span class="p">,</span> <span class="n">date_range_filter</span><span class="p">,</span> <span class="n">cloud_cover_filter</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="searching-items-and-assets">Searching: Items and Assets<a class="headerlink" href="#searching-items-and-assets" title="Permanent link">&para;</a></h2>
+<p>Planet's products are categorized as <strong>items</strong> and <strong>assets</strong>: an item is a single picture taken by a satellite at a certain time. Items have multiple asset types including the image in different formats, along with supporting metadata files.</p>
+<p>For this demonstration, let's get a satellite image that is best suited for analytic applications; i.e., a 4-band image with spectral data for Red, Green, Blue and Near-infrared values. To get the image we want, we will specify an item type of <code>PSScene4Band</code>, and asset type <code>analytic</code>.</p>
+<p>You can learn more about item &amp; asset types in Planet's Data API <a href="https://planet.com/docs/reference/data-api/items-assets/">here</a>.</p>
+<p>Now let's search for all the items that match our filters:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="kn">from</span> <span class="nn">planet.api.auth</span> <span class="kn">import</span> <span class="n">find_api_key</span>
+<span class="c1"># API Key stored as an env variable</span>
+<span class="n">PLANET_API_KEY</span> <span class="o">=</span> <span class="n">find_api_key</span><span class="p">()</span>
+
+<span class="n">item_type</span> <span class="o">=</span> <span class="s2">&quot;PSScene4Band&quot;</span>
+
+<span class="c1"># API request object</span>
+<span class="n">search_request</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;item_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">item_type</span><span class="p">],</span>
+  <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="n">combined_filter</span>
+<span class="p">}</span>
+
+<span class="c1"># fire off the POST request</span>
+<span class="n">search_result</span> <span class="o">=</span> \
+  <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s1">&#39;https://api.planet.com/data/v1/quick-search&#39;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">PLANET_API_KEY</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">search_request</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">search_result</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+<p>Our search returns metadata for all of the images within our AOI that match our date range and cloud coverage filters. It looks like there are multiple images here; let's extract a list of just those image IDs:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># extract image IDs only</span>
+<span class="n">image_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">search_result</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;features&#39;</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">image_ids</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>[u&#39;20160831_143848_0c79&#39;, u&#39;20160831_212703_0c43&#39;, u&#39;20160831_212705_0c43&#39;, u&#39;20160831_212706_0c43&#39;, u&#39;20160831_212707_0c43&#39;, u&#39;20160831_212704_0c43&#39;, u&#39;20160831_212703_1_0c43&#39;, u&#39;20160831_180302_0e26&#39;, u&#39;20160831_180303_0e26&#39;, u&#39;20160831_180301_0e26&#39;, u&#39;20160831_143847_0c79&#39;, u&#39;20160831_143846_0c79&#39;, u&#39;20160831_143845_0c79&#39;, u&#39;20160831_143843_1_0c79&#39;, u&#39;20160831_180236_0e0e&#39;, u&#39;20160831_180235_0e0e&#39;, u&#39;20160831_180234_0e0e&#39;]
+</pre></div>
+
+
+<p>Since we just want a single image, and this is only a demonstration, for our purposes here we can arbitrarily select the first image in that list. Let's do that, and get the <code>asset</code> list available for that image:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># For demo purposes, just grab the first image ID</span>
+<span class="n">id0</span> <span class="o">=</span> <span class="n">image_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">id0_url</span> <span class="o">=</span> <span class="s1">&#39;https://api.planet.com/data/v1/item-types/{}/items/{}/assets&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item_type</span><span class="p">,</span> <span class="n">id0</span><span class="p">)</span>
+
+<span class="c1"># Returns JSON metadata for assets in this ID. Learn more: planet.com/docs/reference/data-api/items-assets/#asset</span>
+<span class="n">result</span> <span class="o">=</span> \
+  <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">id0_url</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">PLANET_API_KEY</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="c1"># List of asset types available for this particular satellite image</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>[u&#39;basic_analytic_rpc_nitf&#39;, u&#39;analytic_xml&#39;, u&#39;basic_analytic_dn&#39;, u&#39;basic_analytic_dn_xml_nitf&#39;, u&#39;basic_analytic_dn_nitf&#39;, u&#39;basic_analytic_xml&#39;, u&#39;basic_analytic_nitf&#39;, u&#39;basic_analytic_rpc&#39;, u&#39;analytic_dn&#39;, u&#39;basic_udm&#39;, u&#39;basic_analytic_dn_rpc_nitf&#39;, u&#39;analytic&#39;, u&#39;analytic_dn_xml&#39;, u&#39;basic_analytic_dn_xml&#39;, u&#39;basic_analytic_dn_rpc&#39;, u&#39;basic_analytic_xml_nitf&#39;, u&#39;basic_analytic&#39;, u&#39;udm&#39;]
+</pre></div>
+
+
+<p>## Activation and Downloading</p>
+<p>The Data API does not pre-generate assets, so they are not always immediately availiable to download. In order to download an asset, we first have to <strong>activate</strong> it.</p>
+<p>Remember, earlier we decided we wanted a color-corrected image best suited for <em>analytic</em> applications. We can check the status of the analytic asset we want to download like so:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># This is &quot;inactive&quot; if the &quot;analytic&quot; asset has not yet been activated; otherwise &#39;active&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;analytic&#39;</span><span class="p">][</span><span class="s1">&#39;status&#39;</span><span class="p">])</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>active
+</pre></div>
+
+
+<p>Let's now go ahead and <strong>activate</strong> that asset for download:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Parse out useful links</span>
+<span class="n">links</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="sa">u</span><span class="s2">&quot;analytic&quot;</span><span class="p">][</span><span class="s2">&quot;_links&quot;</span><span class="p">]</span>
+<span class="n">self_link</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="s2">&quot;_self&quot;</span><span class="p">]</span>
+<span class="n">activation_link</span> <span class="o">=</span> <span class="n">links</span><span class="p">[</span><span class="s2">&quot;activate&quot;</span><span class="p">]</span>
+
+<span class="c1"># Request activation of the &#39;analytic&#39; asset:</span>
+<span class="n">activate_result</span> <span class="o">=</span> \
+  <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">activation_link</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">PLANET_API_KEY</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+
+<p>At this point, we wait for the activation status for the asset we are requesting to change from <code>inactive</code> to <code>active</code>. We can monitor this by polling the "status" of the asset:</p>
+<div class="codehilite"><pre><span></span><span class="n">activation_status_result</span> <span class="o">=</span> \
+  <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">self_link</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">PLANET_API_KEY</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+  <span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">activation_status_result</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>active
+</pre></div>
+
+
+<p>Once the asset has finished activating (status is "active"), we can download it.</p>
+<p><em>Note: the download link on an active asset is temporary</em></p>
+<div class="codehilite"><pre><span></span><span class="c1"># Image can be downloaded by making a GET with your Planet API key, from here:</span>
+<span class="n">download_link</span> <span class="o">=</span> <span class="n">activation_status_result</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">download_link</span><span class="p">)</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>https://api.planet.com/data/v1/download?token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzQXRzTGVHRmFKWGtFYm0wcXJQY3FDaWZ4ZXRsRmtaK2pYZlRoNTJKNzlFVzF5UE1LRWxrUTB0NG5tNTM0U1Nhb1JYSnVvV1dIRzAvSlZieThvU205Zz09IiwiaXRlbV90eXBlX2lkIjoiUFNTY2VuZTRCYW5kIiwidG9rZW5fdHlwZSI6InR5cGVkLWl0ZW0iLCJleHAiOjE1Mzc0NTM4NzgsIml0ZW1faWQiOiIyMDE2MDgzMV8xNDM4NDhfMGM3OSIsImFzc2V0X3R5cGUiOiJhbmFseXRpYyJ9.pmHVEPJKibFAj_PqbCvuavPSnRT-MYZMP0Z5X6YTJ1f5sSv-idN9pEPby7Izn8_nqr_8L0dSLSR4UBfqG3z5HA
+</pre></div>
+
+
+<p><img alt="stockton_thumb.png" src="../../images/stockton_thumb.png" /></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../getting-images-ee/" title="Getting Images into Google Earth Engine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting Images into Google Earth Engine
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Inspecting Satellite Imagery/" title="Inspecting Satellite Imagery" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Inspecting Satellite Imagery
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 - 2019 Samapriya Roy
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/samapriya" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://medium.com/@samapriyaroy" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/samapriyaroy" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/in/samapriya" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","None","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
