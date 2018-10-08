@@ -13,7 +13,7 @@
         <meta name="description" content="Big Earth Hacks for water 2018">
       
       
-        <link rel="canonical" href="https://samapriya.github.io/projects/open-impact/projects/edges/">
+        <link rel="canonical" href="https://samapriya.github.io/projects/open-impact/projects/planet-asset/">
       
       
         <meta name="author" content="Samapriya Roy">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Edge Detection - Big Earth Hacks 2018</title>
+        <title>Planet Imagery - Big Earth Hacks 2018</title>
       
     
     
@@ -96,7 +96,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#edge-detection" tabindex="1" class="md-skip">
+      <a href="../../#understand-planet-items-assets-api" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -122,7 +122,7 @@
                 Big Earth Hacks 2018
               </span>
               <span class="md-header-nav__topic">
-                Edge Detection
+                Planet Imagery
               </span>
             
           
@@ -249,11 +249,58 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../planet-asset/" title="Planet Imagery" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Planet Imagery
+      </label>
+    
+    <a href="./" title="Planet Imagery" class="md-nav__link md-nav__link--active">
       Planet Imagery
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understand-planet-items-assets-api" title="Understand Planet Items-Assets &amp; API" class="md-nav__link">
+    Understand Planet Items-Assets &amp; API
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#items-and-assets" title="Items and Assets" class="md-nav__link">
+    Items and Assets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -381,12 +428,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Analytics in Earth Engine
@@ -414,20 +459,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Edge Detection" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../edges/" title="Edge Detection" class="md-nav__link">
       Edge Detection
     </a>
-    
   </li>
 
         
@@ -486,8 +522,35 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understand-planet-items-assets-api" title="Understand Planet Items-Assets &amp; API" class="md-nav__link">
+    Understand Planet Items-Assets &amp; API
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#items-and-assets" title="Items and Assets" class="md-nav__link">
+    Items and Assets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
   
 </nav>
                   </div>
@@ -499,46 +562,36 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/bigearthhacks2018/edit/master/docs/projects/edges.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/samapriya/Open-Impact/tree/master/docs/bigearthhacks2018/edit/master/docs/projects/planet-asset.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="edge-detection">Edge Detection<a class="headerlink" href="#edge-detection" title="Permanent link">&para;</a></h1>
-<p>You can also run powerful functions such as edge detection using Hough and Canny transforms for example for single images as well as on collections to do edge counts, connectivity measures among a few other applications.</p>
-<p><center><img alt="Edges" src="../../images/edge_detection.gif" /></center></p>
-<p>Similar to earlier example you can access the <a href="https://code.earthengine.google.com/e2bcba4015def1b97f297091abb7905e">full script here</a> or copy and past the same code into <a href="https://code.earthengine.google.com">code.earthengine.google.com</a></p>
-<div class="codehilite"><pre><span></span><span class="c1">//Add an AOI</span>
-<span class="kd">var</span> <span class="nx">aoi</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;users/io-work-1/vector/subset&quot;</span><span class="p">)</span>
-
-<span class="c1">//Zoom to AOI</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">centerObject</span><span class="p">(</span><span class="nx">aoi</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
-
-<span class="c1">//Add image and visualization</span>
-<span class="kd">var</span> <span class="nx">image</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;users/io-work-1/open-ca/PS4BSR/20180621_182201_1008_3B_AnalyticMS_SR&quot;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">vis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;b4&quot;</span><span class="p">,</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span><span class="s2">&quot;b2&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:-</span><span class="mf">433.8386769876429</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mf">2822.7077530529555</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span>
-
-<span class="kd">var</span> <span class="nx">ndvi</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;b4&#39;</span><span class="p">,</span> <span class="s1">&#39;b3&#39;</span><span class="p">]);</span>
-
-<span class="c1">// Apply a Canny edge detector.</span>
-<span class="kd">var</span> <span class="nx">canny</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
-  <span class="nx">image</span><span class="o">:</span> <span class="nx">ndvi</span><span class="p">,</span>
-  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.2</span>
-<span class="p">}).</span><span class="nx">multiply</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-
-<span class="c1">// Apply the Hough transform.</span>
-<span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">HoughTransform</span><span class="p">({</span>
-  <span class="nx">image</span><span class="o">:</span> <span class="nx">canny</span><span class="p">,</span>
-  <span class="nx">gridSize</span><span class="o">:</span> <span class="mi">256</span><span class="p">,</span>
-  <span class="nx">inputThreshold</span><span class="o">:</span> <span class="mi">80</span><span class="p">,</span>
-  <span class="nx">lineThreshold</span><span class="o">:</span> <span class="mi">80</span>
-<span class="p">});</span>
-
-<span class="c1">// Display.</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">vis</span><span class="p">,</span> <span class="s1">&#39;source_image&#39;</span><span class="p">);</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">,{</span><span class="nx">min</span><span class="o">:</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mf">0.5</span><span class="p">},</span> <span class="s1">&#39;NDVI&#39;</span><span class="p">,</span><span class="kc">false</span><span class="p">)</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">canny</span><span class="p">),</span> <span class="p">{</span><span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">palette</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">},</span> <span class="s1">&#39;canny&#39;</span><span class="p">);</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">h</span><span class="p">),</span> <span class="p">{</span><span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">palette</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">},</span> <span class="s1">&#39;hough&#39;</span><span class="p">);</span>
-<span class="nx">Map</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">)</span>
-</pre></div>
+                  <h1>Planet Imagery</h1>
+                
+                <h2 id="understand-planet-items-assets-api"><strong>Understand Planet Items-Assets &amp; API</strong><a class="headerlink" href="#understand-planet-items-assets-api" title="Permanent link">&para;</a></h2>
+<p>You can read the most updated white paper on planet products, items, assets and specifications <a href="https://www.planet.com/products/satellite-imagery/files/Planet_Combined_Imagery_Product_Specs_December2017.pdf">here</a>. While you look at these spec sheets try to understand how you would want to use the data, the purpose and scope of the question you want to answer, the size of downloads and the overall product or derivate in mind. To think of Planet products you have to understand two terms as thought they live in a hierarchy</p>
+<p><center><img alt="Capabilities" src="../../images/planet-products.jpg" /></center>
+<center>Planet Imagery Product Offerings</center></p>
+<h4 id="items-and-assets">Items and Assets<a class="headerlink" href="#items-and-assets" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Item type almost refers exclusively to a family of satellite or sensor types so PlanetScope, RapidEye, Skysat, Landsat and so on are all item types. These are model definitions based on the type of sensor you are utilizing for performing any type of analysis.</p>
+</li>
+<li>
+<p>Asset types are types of item derivatives or data types that you are actually utilizing for example analytic, analytic_sr, analytic_xml, visual and so on. These allow you to choose the type of actual data that you are able to download including the type and level of preprocesing that has been applied to it.</p>
+</li>
+</ul>
+<p>For further reference on item asset relationships you can <a href="https://www.planet.com/docs/reference/data-api/items-assets/#item-type">visit the docs</a></p>
+<p>Now the assumption here is that after you have created your account you have downloaded data either from <a href="https://www.planet.com/explorer">Planet Explorer</a> or you have been curious and looked into the data API and used the wonderful <a href="https://github.com/planetlabs/planet-client-python">python client</a> from planet. Incase you have not and you have python on your system, invoke the power of pip and type</p>
+<p><center><code>pip install planet</code></center></p>
+<p>There is so much more to be done using planet data using some amazing API(s) including</p>
+<ul>
+<li>
+<p>What if you wanted to download hundreds and thousands of scenes for your analysis, the <a href="https://www.planet.com/docs/reference/data-api">Data API</a> will allow you to understand the backend.</p>
+</li>
+<li>
+<p>If you want your images to be automatically clipped to your area of interest, you can use the <a href="https://www.planet.com/docs/reference/clips-api">Clips API</a></p>
+</li>
+</ul>
                 
                   
                 
@@ -559,7 +612,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../functions/" title="Functions in Earth Engine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../.." title="Big Earth Hacks for Water" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -568,19 +621,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Functions in Earth Engine
+                Big Earth Hacks for Water
               </span>
             </div>
           </a>
         
         
-          <a href="../tools/" title="Datasets and Addons" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../img/" title="Images" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Datasets and Addons
+                Images
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
