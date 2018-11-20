@@ -332,7 +332,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../planet-asset/" title="Planet Imagery" class="md-nav__link">
+    <a href="../planet-asset/" title="Planet Imagery" class="md-nav__link">
       Planet Imagery
     </a>
   </li>
@@ -480,20 +480,16 @@
                 
                 <h1 id="images-in-earth-engine">Images in Earth Engine<a class="headerlink" href="#images-in-earth-engine" title="Permanent link">&para;</a></h1>
 <p>In the GEE environment images are stored in Cloud Optimized Geospatial tiles instead of a single image which allows for running an analysis this scale. This means that though the input imagery comes in know formats such as geotiff , MrSid and img these datasets post ingestion into GEE are converted into tiles that are used for at scale analysis. All images that are ingested into either GEE(s) Raster Catalog or your own personal folder and stored in folder or collections of images as you would expect to see when doing deep time stack analysis.</p>
-<p><center><img alt="Imagery" src="/images/ee_imagery.gif" /></center></p>
+<p><center><img alt="Imagery" src="../../images/ee_imagery.gif" /></center></p>
 <p>These images have defined data type,scales and projections along with some default properties such as an index and ID among other system properties. So we can query these properties, print them and add them</p>
 <div class="codehilite"><pre><span></span><span class="c1">//Setting up a Geometry</span>
-<span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
-        <span class="p">[[[</span><span class="o">-</span><span class="mf">116.60665512084961</span><span class="p">,</span> <span class="mf">31.900221577454644</span><span class="p">],</span>
-          <span class="p">[</span><span class="o">-</span><span class="mf">116.60553932189941</span><span class="p">,</span> <span class="mf">31.871215685245158</span><span class="p">],</span>
-          <span class="p">[</span><span class="o">-</span><span class="mf">116.56631469726562</span><span class="p">,</span> <span class="mf">31.871142794614986</span><span class="p">],</span>
-          <span class="p">[</span><span class="o">-</span><span class="mf">116.5675163269043</span><span class="p">,</span> <span class="mf">31.90051304758936</span><span class="p">]]]);</span>
+<span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s1">&#39;users/io-work-1/vector/openca&#39;</span><span class="p">)</span>
 
 <span class="c1">//PlanetScope is 4 band imagery, we are adding surface reflectance image with visualization</span>
 <span class="kd">var</span> <span class="nx">vis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;opacity&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;bands&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;b4&quot;</span><span class="p">,</span><span class="s2">&quot;b3&quot;</span><span class="p">,</span><span class="s2">&quot;b2&quot;</span><span class="p">],</span><span class="s2">&quot;min&quot;</span><span class="o">:</span><span class="mi">208</span><span class="p">,</span><span class="s2">&quot;max&quot;</span><span class="o">:</span><span class="mi">2385</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span>
 
 <span class="c1">//Add an image</span>
-<span class="kd">var</span> <span class="nx">image</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;projects/sat-io/terra2018/ps4bsr/20180115_175153_0e14_3B_AnalyticMS_SR&quot;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">image</span><span class="o">=</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;users/io-work-1/open-ca/PS4BSR/20180621_182201_1008_3B_AnalyticMS_SR&quot;</span><span class="p">)</span>
 <span class="nx">print</span><span class="p">(</span><span class="s2">&quot;Single Image&quot;</span><span class="p">,</span><span class="nx">image</span><span class="p">)</span>
 
 <span class="c1">//Center the Map to the image and add the image</span>
@@ -527,7 +523,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../planet-asset/" title="Planet Imagery" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../planet-asset/" title="Planet Imagery" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
